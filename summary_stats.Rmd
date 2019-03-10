@@ -12,14 +12,14 @@ require(plotly)
 require(tidyr)
 ```
 
-```{r}
+```{r, message=FALSE}
 # import data
 file <- "VOTER_Survey_December16_Release1.csv"
 voter <- read_csv(file, na = c("", "NA", "__NA__"))
 # col 15 is output variable: who did you voted for
 ```
 
-some summary analysis
+summary by states and vote for whom
 
 ```{r}
 sum1 <- voter %>%
@@ -42,7 +42,7 @@ sum2 <- sum1 %>%
 
 proportion by votes and states
 
-```{r}
+```{r, message=FALSE}
 # calculate proportion
 for (i in 2:4) sum2[,i] <- sum2[,i]/sum2[,5]
 
@@ -60,14 +60,36 @@ p <- plot_ly(sum2, x = ~inputstate_2016, y = ~`Donald Trump`,
 p
 ```
 
-distribution of data
+distribution of data by age and votes
 
-```{r}
+```{r, message=FALSE}
+RD <- c("red", "blue")
 
+p2 <- voter %>%
+    filter(presvote16post_2016 == "Hillary Clinton" |
+               presvote16post_2016 == "Donald Trump") %>%
+    plot_ly(x = ~presvote16post_2016,
+            y = ~birthyr_baseline,
+            color = ~presvote16post_2016, colors = RD,
+            type = "box") %>%
+    layout(xaxis = list(title = "Votes"),
+           yaxis = list(title = "Year of birth"))
+p2
 ```
 
-```{r}
+distribution of data by hours using computer and votes
 
+```{r, message=FALSE}
+p3 <- voter %>%
+    filter(presvote16post_2016 == "Hillary Clinton" |
+               presvote16post_2016 == "Donald Trump") %>%
+    plot_ly(x = ~presvote16post_2016,
+            y = ~hourscomputing_baseline,
+            color = ~presvote16post_2016, colors = RD,
+            type = "box") %>%
+    layout(xaxis = list(title = "Votes"),
+           yaxis = list(title = "Hours using computer daily"))
+p3
 ```
 
 ```{r}
