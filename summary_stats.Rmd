@@ -137,3 +137,4 @@ p3 <- voter %>%
            yaxis = list(title = "Hours using computer daily"))
 p3
 ```
+end
