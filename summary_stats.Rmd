@@ -12,11 +12,16 @@ require(plotly)
 require(tidyr)
 ```
 
-```{r, message=FALSE}
+```{r, eval=FALSE}
 # import data
 file <- "VOTER_Survey_December16_Release1.csv"
 voter <- read_csv(file, na = c("", "NA", "__NA__"))
 # col 15 is output variable: who did you voted for
+```
+
+```{r}
+voter <- data_2
+rm(data_2)
 ```
 
 ### plot 1.1 & 1.2
@@ -132,16 +137,3 @@ p3 <- voter %>%
            yaxis = list(title = "Hours using computer daily"))
 p3
 ```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
