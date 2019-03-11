@@ -1,30 +1,39 @@
 require(dplyr)
 require(tidyverse)
 
+# for missingness map
+if (!require(Amelia)) {
+    install.packages("Amelia")
+    require(Amelia)
+}
+
 data <- read_csv("VOTER_Survey_December16_Release1.csv",
                  na = c("", "NA", "__NA__"))
 
-stat_NA <- rep(NA,ncol(data))
+# missingness map
+missmap(data_1)
 
-for(i in 1:ncol(data)){
-    stat_NA[i]=sum(is.na(data[,i]))/nrow(data[,i])
+co <- ncol(data)
+ro <- nrow(data)
+col_NA <- rep(NA, co)
+row_NA <- rep(NA, ro)
+
+for(i in 1:ncol(data)) {
+    col_NA[i] <- sum(is.na(data[,i]))/ro
 }
 
-# hist(stat_NA)
-
-count <- as.numeric(0)
-for(i in 1:length(stat_NA)){
-    if (stat_NA[i]>=0.5) count <- count+1
+for(i in 1:nrow(data)) {
+    row_NA[i] <- sum(is.na(data[i,]))/co
 }
-remove_list <- rep(0,count)
 
-# stat_NA[which(stat_NA >= 0.5)]
-remove_list <- which(stat_NA >= 0.5)
-data_1 <- data[,-remove_list]
+remove_col <- which(col_NA >= 0.5)
+remove_row <- which(row_NA >= 0.25)
+data_1 <- data[,-remove_col]
+data_1 <- data_1[-remove_row,]
 
-sum(is.na(data_1))
-
-require(Hmisc)
+if (!require(Hmisc)) {
+    install.packages("Hmisc")
+    require(Hmisc)
+}
 data_2 <- impute(data_1)
-
-sum(is.na(data_2))
+# sum(is.na(data_2)) # should be zero
