@@ -11,7 +11,7 @@ data <- read_csv("VOTER_Survey_December16_Release1.csv",
                  na = c("", "NA", "__NA__"))
 
 # missingness map
-missmap(data_1)
+# missmap(data)
 
 co <- ncol(data)
 ro <- nrow(data)
@@ -30,6 +30,8 @@ remove_col <- which(col_NA >= 0.5)
 remove_row <- which(row_NA >= 0.25)
 data_1 <- data[,-remove_col]
 data_1 <- data_1[-remove_row,]
+
+# missmap(data_1)
 
 if (!require(Hmisc)) {
     install.packages("Hmisc")
