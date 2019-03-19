@@ -1,0 +1,702 @@
+[[1]]
+# A tibble: 5 x 1
+  persfinretro_2016     
+  <chr>                 
+1 About the same as now 
+2 Worse off financially 
+3 Better off financially
+4 Don't know            
+5 <NA>                  
+
+[[2]]
+# A tibble: 5 x 1
+  econtrend_2016
+  <chr>         
+1 Getting better
+2 Getting worse 
+3 About the same
+4 Don't know    
+5 <NA>          
+
+[[3]]
+# A tibble: 5 x 1
+  futuretrend_2016     
+  <chr>                
+1 Don't know           
+2 Better than R's      
+3 Worse than R's       
+4 About the same as R's
+5 <NA>                 
+
+[[4]]
+# A tibble: 4 x 1
+  wealth_2016                      
+  <chr>                            
+1 Should be more evenly distributed
+2 Distribution is fair             
+3 Don't know                       
+4 <NA>                             
+
+[[5]]
+# A tibble: 5 x 1
+  values_culture_2016                            
+  <chr>                                          
+1 Holding steady                                 
+2 Generally becoming rarer and less accepted     
+3 Generally becoming more widespread and accepted
+4 Don't know                                     
+5 <NA>                                           
+
+[[6]]
+# A tibble: 5 x 1
+  imiss_a_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 Not very important
+4 <NA>              
+5 Unimportant       
+
+[[7]]
+# A tibble: 5 x 1
+  imiss_b_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 <NA>              
+4 Not very important
+5 Unimportant       
+
+[[8]]
+# A tibble: 5 x 1
+  imiss_c_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[9]]
+# A tibble: 5 x 1
+  imiss_d_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[10]]
+# A tibble: 5 x 1
+  imiss_e_2016      
+  <chr>             
+1 Very important    
+2 Not very important
+3 Somewhat important
+4 Unimportant       
+5 <NA>              
+
+[[11]]
+# A tibble: 5 x 1
+  imiss_f_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[12]]
+# A tibble: 5 x 1
+  imiss_g_2016      
+  <chr>             
+1 Very important    
+2 Unimportant       
+3 Not very important
+4 Somewhat important
+5 <NA>              
+
+[[13]]
+# A tibble: 5 x 1
+  imiss_h_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[14]]
+# A tibble: 5 x 1
+  imiss_i_2016      
+  <chr>             
+1 Somewhat important
+2 Unimportant       
+3 Very important    
+4 Not very important
+5 <NA>              
+
+[[15]]
+# A tibble: 5 x 1
+  imiss_j_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 <NA>              
+5 Unimportant       
+
+[[16]]
+# A tibble: 5 x 1
+  imiss_k_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Unimportant       
+4 Not very important
+5 <NA>              
+
+[[17]]
+# A tibble: 5 x 1
+  imiss_l_2016      
+  <chr>             
+1 Very important    
+2 Unimportant       
+3 Somewhat important
+4 Not very important
+5 <NA>              
+
+[[18]]
+# A tibble: 5 x 1
+  imiss_m_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Unimportant       
+4 Not very important
+5 <NA>              
+
+[[19]]
+# A tibble: 5 x 1
+  imiss_n_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 <NA>              
+5 Unimportant       
+
+[[20]]
+# A tibble: 5 x 1
+  imiss_o_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 <NA>              
+4 Not very important
+5 Unimportant       
+
+[[21]]
+# A tibble: 5 x 1
+  imiss_p_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[22]]
+# A tibble: 5 x 1
+  imiss_q_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Unimportant       
+4 Not very important
+5 <NA>              
+
+[[23]]
+# A tibble: 5 x 1
+  imiss_r_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 Unimportant       
+4 Not very important
+5 <NA>              
+
+[[24]]
+# A tibble: 5 x 1
+  imiss_s_2016      
+  <chr>             
+1 Very important    
+2 Somewhat important
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[25]]
+# A tibble: 5 x 1
+  imiss_t_2016      
+  <chr>             
+1 Very important    
+2 Not very important
+3 Unimportant       
+4 Somewhat important
+5 <NA>              
+
+[[26]]
+# A tibble: 5 x 1
+  imiss_u_2016      
+  <chr>             
+1 Somewhat important
+2 Very important    
+3 Not very important
+4 Unimportant       
+5 <NA>              
+
+[[27]]
+# A tibble: 5 x 1
+  imiss_x_2016      
+  <chr>             
+1 Very important    
+2 Not very important
+3 Somewhat important
+4 Unimportant       
+5 <NA>              
+
+[[28]]
+# A tibble: 5 x 1
+  imiss_y_2016      
+  <chr>             
+1 Very important    
+2 Unimportant       
+3 Somewhat important
+4 Not very important
+5 <NA>              
+
+[[29]]
+# A tibble: 4 x 1
+  gvmt_involment_2016                                  
+  <chr>                                                
+1 We need a strong government to handle today's comple…
+2 People would be better able to handle today's proble…
+3 Don't know                                           
+4 <NA>                                                 
+
+[[30]]
+# A tibble: 6 x 1
+  amcitizen_2016   
+  <chr>            
+1 Agree strongly   
+2 Disagree         
+3 Agree            
+4 Don't know       
+5 Disagree strongly
+6 <NA>             
+
+[[31]]
+# A tibble: 6 x 1
+  amshamed_2016    
+  <chr>            
+1 Agree            
+2 Agree strongly   
+3 Disagree         
+4 Disagree strongly
+5 Don't know       
+6 <NA>             
+
+[[32]]
+# A tibble: 6 x 1
+  belikeus_2016    
+  <chr>            
+1 Disagree         
+2 Agree            
+3 Agree strongly   
+4 Don't know       
+5 Disagree strongly
+6 <NA>             
+
+[[33]]
+# A tibble: 6 x 1
+  prouddem_2016   
+  <chr>           
+1 Somewhat proud  
+2 Very proud      
+3 Not very proud  
+4 Not proud at all
+5 <NA>            
+6 Don't know      
+
+[[34]]
+# A tibble: 6 x 1
+  proudhis_2016   
+  <chr>           
+1 Not very proud  
+2 Somewhat proud  
+3 Very proud      
+4 <NA>            
+5 Not proud at all
+6 Don't know      
+
+[[35]]
+# A tibble: 6 x 1
+  proudgrp_2016   
+  <chr>           
+1 Not very proud  
+2 Somewhat proud  
+3 Very proud      
+4 Not proud at all
+5 <NA>            
+6 Don't know      
+
+[[36]]
+# A tibble: 6 x 1
+  ambornin_2016       
+  <chr>               
+1 Not very important  
+2 Not important at all
+3 Fairly important    
+4 Very important      
+5 Don't know          
+6 <NA>                
+
+[[37]]
+# A tibble: 6 x 1
+  amcit_2016          
+  <chr>               
+1 Very important      
+2 Fairly important    
+3 Not very important  
+4 Not important at all
+5 Don't know          
+6 <NA>                
+
+[[38]]
+# A tibble: 6 x 1
+  amlived_2016        
+  <chr>               
+1 Don't know          
+2 Not important at all
+3 Very important      
+4 Not very important  
+5 Fairly important    
+6 <NA>                
+
+[[39]]
+# A tibble: 6 x 1
+  amenglish_2016      
+  <chr>               
+1 Fairly important    
+2 Very important      
+3 Not very important  
+4 Not important at all
+5 Don't know          
+6 <NA>                
+
+[[40]]
+# A tibble: 6 x 1
+  amchrstn_2016       
+  <chr>               
+1 Not important at all
+2 Fairly important    
+3 Not very important  
+4 Don't know          
+5 <NA>                
+6 Very important      
+
+[[41]]
+# A tibble: 6 x 1
+  amgovt_2016         
+  <chr>               
+1 Very important      
+2 Not very important  
+3 Fairly important    
+4 <NA>                
+5 Not important at all
+6 Don't know          
+
+[[42]]
+# A tibble: 6 x 1
+  amwhite_2016        
+  <chr>               
+1 Not important at all
+2 Not very important  
+3 Fairly important    
+4 Very important      
+5 Don't know          
+6 <NA>                
+
+[[43]]
+# A tibble: 6 x 1
+  amdiverse_2016      
+  <chr>               
+1 Very important      
+2 Not very important  
+3 Fairly important    
+4 Not important at all
+5 Don't know          
+6 <NA>                
+
+[[44]]
+# A tibble: 5 x 1
+  gender_equality_2016                  
+  <chr>                                 
+1 Don't know                            
+2 Men have more opportunities than women
+3 Women have more opportunities than men
+4 Men and women have equal opportunities
+5 <NA>                                  
+
+[[45]]
+# A tibble: 4 x 1
+  POLITICAL_CORRECTNESS_2016                           
+  <chr>                                                
+1 Even if some people are offended, Americans need to …
+2 People need to be more careful about the language th…
+3 Don't know                                           
+4 <NA>                                                 
+
+[[46]]
+# A tibble: 5 x 1
+  race_fate_2016
+  <chr>         
+1 Not very much 
+2 Some          
+3 A lot         
+4 None          
+5 <NA>          
+
+[[47]]
+# A tibble: 8 x 1
+  pid7_2016                 
+  <chr>                     
+1 Not very strong Democrat  
+2 Strong Republican         
+3 Lean Democrat             
+4 Strong Democrat           
+5 Not very strong Republican
+6 Independent               
+7 Lean Republican           
+8 Not sure                  
+
+[[48]]
+# A tibble: 5 x 1
+  persfinretro_baseline 
+  <chr>                 
+1 About the same as now 
+2 Better off financially
+3 Worse off financially 
+4 <NA>                  
+5 Not sure              
+
+[[49]]
+# A tibble: 5 x 1
+  econtrend_baseline
+  <chr>             
+1 Getting better    
+2 About the same    
+3 Getting worse     
+4 Not sure          
+5 <NA>              
+
+[[50]]
+# A tibble: 6 x 1
+  fatalism2_baseline
+  <chr>             
+1 Disagree somewhat 
+2 Disagree strongly 
+3 Agree strongly    
+4 Agree somewhat    
+5 Not sure          
+6 <NA>              
+
+[[51]]
+# A tibble: 5 x 1
+  imiss_a_baseline  
+  <chr>             
+1 Unimportant       
+2 Very Important    
+3 Not very Important
+4 Somewhat Important
+5 <NA>              
+
+[[52]]
+# A tibble: 5 x 1
+  imiss_b_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 <NA>              
+4 Not very Important
+5 Unimportant       
+
+[[53]]
+# A tibble: 5 x 1
+  imiss_c_baseline  
+  <chr>             
+1 Somewhat Important
+2 Very Important    
+3 Unimportant       
+4 Not very Important
+5 <NA>              
+
+[[54]]
+# A tibble: 5 x 1
+  imiss_d_baseline  
+  <chr>             
+1 Somewhat Important
+2 Unimportant       
+3 Not very Important
+4 Very Important    
+5 <NA>              
+
+[[55]]
+# A tibble: 5 x 1
+  imiss_f_baseline  
+  <chr>             
+1 Somewhat Important
+2 Very Important    
+3 Not very Important
+4 Unimportant       
+5 <NA>              
+
+[[56]]
+# A tibble: 5 x 1
+  imiss_g_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 Unimportant       
+4 Not very Important
+5 <NA>              
+
+[[57]]
+# A tibble: 5 x 1
+  imiss_h_baseline  
+  <chr>             
+1 Very Important    
+2 Not very Important
+3 Somewhat Important
+4 Unimportant       
+5 <NA>              
+
+[[58]]
+# A tibble: 5 x 1
+  imiss_j_baseline  
+  <chr>             
+1 Very Important    
+2 Not very Important
+3 Somewhat Important
+4 Unimportant       
+5 <NA>              
+
+[[59]]
+# A tibble: 5 x 1
+  imiss_m_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 Not very Important
+4 Unimportant       
+5 <NA>              
+
+[[60]]
+# A tibble: 5 x 1
+  imiss_p_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 Not very Important
+4 Unimportant       
+5 <NA>              
+
+[[61]]
+# A tibble: 5 x 1
+  imiss_q_baseline  
+  <chr>             
+1 Very Important    
+2 Not very Important
+3 Somewhat Important
+4 Unimportant       
+5 <NA>              
+
+[[62]]
+# A tibble: 5 x 1
+  imiss_r_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 Not very Important
+4 Unimportant       
+5 <NA>              
+
+[[63]]
+# A tibble: 5 x 1
+  imiss_s_baseline  
+  <chr>             
+1 Very Important    
+2 Somewhat Important
+3 Not very Important
+4 Unimportant       
+5 <NA>              
+
+[[64]]
+# A tibble: 5 x 1
+  imiss_t_baseline  
+  <chr>             
+1 Not very Important
+2 Very Important    
+3 Unimportant       
+4 Somewhat Important
+5 <NA>              
+
+[[65]]
+# A tibble: 5 x 1
+  envser2_baseline
+  <chr>           
+1 Very serious    
+2 <NA>            
+3 Somewhat serious
+4 Not very serious
+5 Not sure        
+
+[[66]]
+# A tibble: 9 x 1
+  pid7_baseline             
+  <chr>                     
+1 Not very strong Democrat  
+2 Strong Republican         
+3 Lean Democrat             
+4 Independent               
+5 Strong Democrat           
+6 Lean Republican           
+7 Not very strong Republican
+8 <NA>                      
+9 Not sure                  
+
+[[67]]
+# A tibble: 5 x 1
+  polinterest_baseline
+  <chr>               
+1 Very much interested
+2 Somewhat interested 
+3 Not much interested 
+4 <NA>                
+5 Not sure            
+
+[[68]]
+# A tibble: 8 x 1
+  post_pid7_2012            
+  <chr>                     
+1 Not very strong Democrat  
+2 Strong Republican         
+3 Independent               
+4 Strong Democrat           
+5 Lean Republican           
+6 Lean Democrat             
+7 Not very strong Republican
+8 Not sure                  
+
