@@ -1,4 +1,4 @@
 # 5220-project
 
-### index
+### Index
 [Step 0: clean data](data_clean/data_clean.R)
