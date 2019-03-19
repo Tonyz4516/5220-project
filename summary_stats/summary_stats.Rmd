@@ -1,0 +1,147 @@
+---
+title: "summary stats"
+author: "Tony Yukuang Zhang"
+date: "3/9/2019"
+output: html_document
+---
+
+```{r library, message=FALSE}
+require(readr)
+require(dplyr)
+require(plotly)
+require(tidyr)
+```
+
+```{r, message=FALSE}
+# import data
+file <- "VOTER_Survey_December16_Release1.csv"
+voter <- read_csv(file, na = c("", "NA", "__NA__"))
+# col 15 is output variable: who did you voted for
+```
+
+### plot 1.1 & 1.2
+
+summary by states and vote for whom
+
+```{r}
+sum1 <- voter %>%
+    group_by(inputstate_2016, presvote16post_2016) %>%
+    summarise(count = length(case_identifier)) %>%
+    spread(presvote16post_2016, count)
+
+sum1 <- sum1 %>%
+    apply(2, function(x) ifelse(is.na(x), 0, x)) %>%
+    as.data.frame
+
+sum1[,-1] <- apply(sum1[,-1], 2, as.numeric)
+
+sum2 <- sum1 %>%
+    mutate(Others = `Evan McMullin` + `Gary Johnson` + 
+               `Jill Stein` + Other) %>%
+    select(inputstate_2016, `Donald Trump`, `Hillary Clinton`, Others) %>%
+    mutate(total = `Donald Trump` + `Hillary Clinton` + Others)
+```
+
+proportion by votes and states
+
+```{r, message=FALSE}
+# calculate proportion
+for (i in 2:4) sum2[,i] <- sum2[,i]/sum2[,5]
+
+p <- plot_ly(sum2, x = ~inputstate_2016, y = ~`Donald Trump`,
+             type = 'bar', name = 'Donald Trump',
+             marker = list(color = 'red')) %>%
+    add_trace(y = ~`Hillary Clinton`, name = 'Hillary Clinton',
+              marker = list(color = 'blue')) %>%
+    add_trace(y = ~Others, name = 'Other',
+              marker = list(color = 'green')) %>%
+    layout(xaxis = list(title = "", tickangle = -45),
+           yaxis = list(title = ""),
+           margin = list(b = 100),
+           barmode = 'stack')
+p
+```
+
+compare our sample votes with actual voting results
+
+read in text and extract number
+
+```{r}
+actual_vote <- read_lines("actual_vote.txt")
+st <- grep("Presidential Election", actual_vote) - 1
+tr <- grep("D. Trump", actual_vote) + 1
+cl <- grep("H. Clinton", actual_vote) + 1
+act_vote <- data.frame(state = actual_vote[st],
+                       trump = actual_vote[tr],
+                       clinton = actual_vote[cl],
+                       stringsAsFactors = F)
+act_vote$trump <- as.numeric(sub("%", "", act_vote$trump)) / 100
+act_vote$clinton <- as.numeric(sub("%", "", act_vote$clinton)) / 100
+act_vote <- act_vote %>%
+    mutate(other = 1 - trump - clinton)
+```
+
+```{r}
+p1 <- plot_ly(act_vote, x = ~state, y = ~trump,
+             type = 'bar', name = 'Donald Trump',
+             marker = list(color = 'red')) %>%
+    add_trace(y = ~clinton, name = 'Hillary Clinton',
+              marker = list(color = 'blue')) %>%
+    add_trace(y = ~other, name = 'Other',
+              marker = list(color = 'green')) %>%
+    layout(xaxis = list(title = "", tickangle = -45),
+           yaxis = list(title = ""),
+           margin = list(b = 100),
+           barmode = 'stack')
+p1
+```
+
+
+### plot 2
+
+distribution of data by age and votes
+
+```{r, message=FALSE}
+RD <- c("red", "blue")
+
+p2 <- voter %>%
+    filter(presvote16post_2016 == "Hillary Clinton" |
+               presvote16post_2016 == "Donald Trump") %>%
+    plot_ly(x = ~presvote16post_2016,
+            y = ~birthyr_baseline,
+            color = ~presvote16post_2016, colors = RD,
+            type = "box") %>%
+    layout(xaxis = list(title = "Votes"),
+           yaxis = list(title = "Year of birth"))
+p2
+```
+
+### plot 3
+
+distribution of data by hours using computer and votes
+
+```{r, message=FALSE}
+p3 <- voter %>%
+    filter(presvote16post_2016 == "Hillary Clinton" |
+               presvote16post_2016 == "Donald Trump") %>%
+    plot_ly(x = ~presvote16post_2016,
+            y = ~hourscomputing_baseline,
+            color = ~presvote16post_2016, colors = RD,
+            type = "box") %>%
+    layout(xaxis = list(title = "Votes"),
+           yaxis = list(title = "Hours using computer daily"))
+p3
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
