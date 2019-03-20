@@ -1,0 +1,80 @@
+variable names:
+
+[1] "wealth_2016"               
+[2] "values_culture_2016"       
+[3] "gvmt_involment_2016"       
+[4] "gender_equality_2016"      
+[5] "POLITICAL_CORRECTNESS_2016"
+[6] "pid7_2016"                 
+[7] "envser2_baseline"          
+[8] "pid7_baseline"             
+[9] "post_pid7_2012"
+   
+[[1]]
+[1] "should be more evenly distributed"
+[2] "distribution is fair"             
+[3] "don't know"                       
+[4] NA                                 
+
+[[2]]
+[1] "holding steady"                                 
+[2] "generally becoming rarer and less accepted"     
+[3] "generally becoming more widespread and accepted"
+[4] "don't know"                                     
+[5] NA                                               
+
+[[3]]
+[1] "we need a strong government to handle today's complex economic problems"                                     
+[2] "people would be better able to handle today's problems within a free market with less government involvement"
+[3] "don't know"                                                                                                  
+[4] NA                                                                                                            
+
+[[4]]
+[1] "don't know"                            
+[2] "men have more opportunities than women"
+[3] "women have more opportunities than men"
+[4] "men and women have equal opportunities"
+[5] NA                                      
+
+[[5]]
+[1] "even if some people are offended, americans need to be able to speak frankly about controversial issues and problems fac"
+[2] "people need to be more careful about the language they use to avoid offending people with different backgrounds or value"
+[3] "don't know"                                                                                                              
+[4] NA                                                                                                                        
+
+[[6]]
+[1] "not very strong democrat"  
+[2] "strong republican"         
+[3] "lean democrat"             
+[4] "strong democrat"           
+[5] "not very strong republican"
+[6] "independent"               
+[7] "lean republican"           
+[8] "not sure"                  
+
+[[7]]
+[1] "very serious"     NA                
+[3] "somewhat serious" "not very serious"
+[5] "not sure"        
+
+[[8]]
+[1] "not very strong democrat"  
+[2] "strong republican"         
+[3] "lean democrat"             
+[4] "independent"               
+[5] "strong democrat"           
+[6] "lean republican"           
+[7] "not very strong republican"
+[8] NA                          
+[9] "not sure"                  
+
+[[9]]
+[1] "not very strong democrat"  
+[2] "strong republican"         
+[3] "independent"               
+[4] "strong democrat"           
+[5] "lean republican"           
+[6] "lean democrat"             
+[7] "not very strong republican"
+[8] "not sure"                  
+
