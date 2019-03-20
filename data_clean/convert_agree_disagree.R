@@ -2,6 +2,10 @@
 # source("data_clean.R")
 # variable converted in this step: "imiss_a_2016","imiss_b_2016","imiss_c_2016","imiss_d_2016","imiss_e_2016","imiss_f_2016","imiss_g_2016","imiss_h_2016","imiss_i_2016","imiss_j_2016","imiss_k_2016","imiss_l_2016","imiss_m_2016","imiss_n_2016","imiss_o_2016","imiss_p_2016","imiss_q_2016","imiss_r_2016","imiss_s_2016","imiss_t_2016","imiss_u_2016","imiss_x_2016","imiss_y_2016","ambornin_2016","amcit_2016","amlived_2016","amenglish_2016","amchrstn_2016","amgovt_2016","amwhite_2016","amdiverse_2016","imiss_a_baseline","imiss_b_baseline","imiss_c_baseline","imiss_d_baseline","imiss_f_baseline","imiss_g_baseline","imiss_h_baseline","imiss_j_baseline","imiss_m_baseline","imiss_p_baseline","imiss_q_baseline","imiss_r_baseline","imiss_s_baseline","imiss_t_baseline","amcitizen_2016","amshamed_2016","belikeus_2016","fatalism2_baseline","persfinretro_2016","econtrend_2016","futuretrend_2016","persfinretro_baseline","econtrend_baseline","prouddem_2016","proudhis_2016","proudgrp_2016","race_fate_2016","polinterest_baseline"
 require(parallel)
+require(readr)
+require(dplyr)
+require(plotly)
+require(tidyr)
 
 # all character to lower case letter
 voter2 <- as.data.frame(apply(voter2,2,function(x) return(tolower(x))),
