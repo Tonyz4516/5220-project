@@ -95,13 +95,3 @@ x <- ifelse(x == "somewhat interested", 0, x)
 x <- ifelse(x == "not much interested", -1, x)
 x <- ifelse(x == "not sure", NA, x)
 x -> voter2[,275]
-             
-# set new mark column, and fill NA with neutral
-voter <- voter2
-nm <- colnames(voter2)[c(loc[c(loc0, loc1)],
-                         40,41,43,186,187,117,118,119,153,275)]
-for (i in 1:59) {
-    new_name <- paste0(nm[i], "_mark")
-    voter2[[new_name]] <- ifelse(is.na(voter2[[nm[i]]]), 0, 1) # new mark column
-    voter2[[nm[i]]] <- ifelse(is.na(voter2[[nm[i]]]), 0, voter2[[nm[i]]]) # fill NA with neutral value
-}
