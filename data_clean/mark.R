@@ -22,4 +22,9 @@ rm_na <- apply(voter2[,loc_2_level], 2, function(x){
 loc_rm_na <- loc_2_level[which(rm_na == 1)]
 
 # turns out, there is only one col with one valid variable and NA
-# which is: post_SenCand2Party_2012
+# which is: post_SenCand2Party_2012 # 451
+
+voter <- voter[,-451]
+voter2 <- voter2[,-451]
+
+save(voter, voter2, file = "step2.rda")
