@@ -8,7 +8,7 @@
 
 + [Step 2: adding missing/don'tknow mark column](mark.R)
 
-  + [this is the data after processing step 1](data_clean/step_1.rda)
+  + [this is the data after processing step 1](data_clean/step2.rda)
 
 
 
