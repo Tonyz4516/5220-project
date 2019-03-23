@@ -24,8 +24,8 @@ pNAorDontKnow <- function(vec){
 }
 
 # drop row with more than 25% NA plus Don't know
-row_w_25_NA <- which(apply(voter, 1, pNAorDontKnow) >= 0.25)
-voter1 <- voter[-row_w_25_NA,] # 475 row removed
+# row_w_25_NA <- which(apply(voter, 1, pNAorDontKnow) >= 0.25)
+# voter1 <- voter[-row_w_25_NA,] # 475 row removed
 
 # drop col with more than 50% of NA plus "Don't know"
 col_w_50_NA <- which(apply(voter, 2, pNAorDontKnow) >= 0.5)
