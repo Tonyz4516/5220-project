@@ -6,7 +6,7 @@
 
 + [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R)
 
-+ [Step 2: adding missing/don'tknow mark column](mark.R)
++ [Step 2: adding missing/don'tknow mark column](data_clean/mark.R)
 
   + [this is the data after processing step 2](data_clean/step2.rda)
 
