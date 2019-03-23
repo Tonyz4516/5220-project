@@ -202,3 +202,7 @@
     del df['post_SenCand3Party_2012'] #lots of NAs
     del df['starttime_2016'] #not relevant
     del df['endtime_2016'] #not relevant
+    del df['post_HouseCand1Name_2012'] #this has lots of names so it's a lot of outcomes for a categorical variable. also we already know which party the voters voted for, so this is kind of redundant.
+    del df['post_HouseCand2Name_2012'] #same reason as post_HouseCand1Name_2012
+    del df['post_SenCand1Name_2012'] #same reason
+    del df['post_SenCand2Name_2012'] #same reason
