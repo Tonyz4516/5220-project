@@ -3,6 +3,7 @@
 ### Index
 
 + [Step 0: clean data](data_clean/data_clean.R)
+  + In this step, we first manually dropped some variables: [dropped variables](data_clean/delete_variable_identified_by_floris.txt)
 
 + [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R)
 
