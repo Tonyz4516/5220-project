@@ -1,5 +1,7 @@
 # 5220-project
 
+[project google folder](https://drive.google.com/drive/folders/1a3j_0lgygyUjZYWuUAzN1wfC-h5im47_?usp=sharing_eip&ts=5c968193)
+
 ### Index
 
 + [Step 0: clean data](data_clean/data_clean.R)
@@ -7,6 +9,8 @@
   + Then cols over 50% value are NA or "don't know" ~~and rows with over 25% value are NA or "don't know"~~ are dropped
 
 + [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R)
+  + 
+
 
 + [Step 2: adding missing/don'tknow mark column](data_clean/mark.R)
 
