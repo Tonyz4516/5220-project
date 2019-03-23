@@ -4,6 +4,7 @@
 
 + [Step 0: clean data](data_clean/data_clean.R)
   + In this step, we first manually dropped some variables: [dropped variables](data_clean/delete_variable_identified_by_floris.txt)
+  + Then cols over 50% value are NA or "don't know" ~~and rows with over 25% value are NA or "don't know"~~ are dropped
 
 + [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R)
 
