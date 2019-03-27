@@ -13,7 +13,7 @@
   + Then ordinal data are converted to numerical values, with negative number representing negative feedbacks (e.g. disagree, disapprove, worsen situation), and positive number standing for positive feedbacks
   + NA and don't know are replaced with neutral number (i.e. 0 in this case), and a missing indicator column is added for each column with NA
 
-+ [Step 2: convert string to numbers](data_clean/)
++ [Step 2: convert string to numbers](data_clean/converting_strings2numbers.py)
 
 + [Step 3: adding missing/don'tknow mark column](data_clean/mark.R)
 
