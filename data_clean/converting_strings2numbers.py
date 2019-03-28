@@ -3,7 +3,7 @@ import re
 
 Data2=pd.read_csv("step_2_voter.csv")
 
-#We are first performing this code on 'ft_muslim_2016' as an example.
+#We are first performing this code on 'ft_muslim_2016' as an example. 
 
 #Step 1 - removing extra spaces and symbol "-" between numbers and text
 
