@@ -6,7 +6,7 @@ require(tidyr)
 
 voter <- read_csv("sml_assignment/project/step2_voter.csv")
 
-source("convert_agree_disagree.R")
+source("convert_agree_disagree.R") # must run this to obtain vector: filtered & loc19
 nm <- colnames(voter)[c(filtered,loc19)]
 
 for (i in 1:59) {
