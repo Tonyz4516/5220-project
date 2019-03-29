@@ -4,7 +4,7 @@ require(dplyr)
 require(plotly)
 require(tidyr)
 
-voter <- read_csv("sml_assignment/project/step2_voter.csv")
+voter <- read_csv("step2_voter.csv")
 
 source("convert_agree_disagree.R") # must run this to obtain vector: filtered & loc19
 nm <- colnames(voter)[c(filtered,loc19)]
