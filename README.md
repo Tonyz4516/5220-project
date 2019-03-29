@@ -27,7 +27,7 @@
 
 + [Step 3: adding missing/don'tknow mark column](data_clean/mark.R)
 
-  + [this is the data after processing step 2](data_clean/step2.rda)
+  + [this is the data after processing step 2](data_clean/step3_voter.zip)
 
 ![](markdown_files/step0-3.jpg)
 
