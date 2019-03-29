@@ -1,21 +1,28 @@
 # set new mark column, and fill NA with neutral
-voter <- voter2
-nm <- colnames(voter2)[c(loc[c(loc0, loc1)],
-                         40,41,43,186,187,117,118,119,153,275)]
+require(readr)
+require(dplyr)
+require(plotly)
+require(tidyr)
+
+voter <- read_csv("sml_assignment/project/step2_voter.csv")
+
+source("convert_agree_disagree.R")
+nm <- colnames(voter)[c(filtered,loc19)]
+
 for (i in 1:59) {
     new_name <- paste0(nm[i], "_mark")
-    voter2[[new_name]] <- ifelse(is.na(voter2[[nm[i]]]), 0, 1) # new mark column
-    voter2[[nm[i]]] <- ifelse(is.na(voter2[[nm[i]]]), 0, voter2[[nm[i]]]) # fill NA with neutral value
+    voter[[new_name]] <- ifelse(is.na(voter[[nm[i]]]), 0, 1) # new mark column
+    voter[[nm[i]]] <- ifelse(is.na(voter[[nm[i]]]), 0, voter[[nm[i]]]) # fill NA with neutral value
 }
 
 # find col with one valid level + NA
-lu <- apply(voter2, 2, function(x) {
+lu <- apply(voter, 2, function(x) {
     return(length(unique(x)))
 }) # vector: number of unique value for each col
 
 loc_2_level <- which(lu == 2)
 
-rm_na <- apply(voter2[,loc_2_level], 2, function(x){
+rm_na <- apply(voter[,loc_2_level], 2, function(x){
     return(sum(is.na(unique(x))))
 }) # vector: if one out of two unique value is NA
 
@@ -24,7 +31,7 @@ loc_rm_na <- loc_2_level[which(rm_na == 1)]
 # turns out, there is only one col with one valid variable and NA
 # which is: post_SenCand2Party_2012 # 451
 
-voter <- voter[,-451]
-voter2 <- voter2[,-451]
+voter <- voter[,-which(colnames(voter) == "post_SenCand2Party_2012")]
 
-save(voter, voter2, file = "step2.rda")
+save(voter, nm, file = "step3.rda")
+write.csv(voter, "step3_voter.csv")
