@@ -6,8 +6,6 @@
 
 + [original data](markdown_files/original_data.zip)
 
-![](markdown_files/step0-3.jpg)
-
 + [Step 0: clean data](data_clean/data_clean.R)
   + In this step, we first manually dropped some variables: [dropped variables](data_clean/delete_variable_identified_by_floris.txt)
 
@@ -31,7 +29,7 @@
 
   + [this is the data after processing step 2](data_clean/step2.rda)
 
-
+![](markdown_files/step0-3.jpg)
 
 
 [Additional Step: summary stats](summary_stats/summary_stats.Rmd)
