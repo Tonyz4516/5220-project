@@ -11,7 +11,7 @@
 
   + Then cols over 50% value are NA or "don't know" ~~and rows with over 25% value are NA or "don't know"~~ are dropped
 
-+ [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R)
++ [Step 1: convert ordinal cols](data_clean/convert_agree_disagree.R): after find variable selection, this file need to be revisited to check number-value pair of ordinal variables
 
   + In this step, we used key words to find all potential ordinal data
 
