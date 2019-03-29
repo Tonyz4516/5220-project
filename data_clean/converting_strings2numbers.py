@@ -36,4 +36,4 @@ for j in range(15):
             Data2.set_value(i,Variables_names[j],float(All_variables[j][i]))
 
 #Done!
-voter.to_csv("step2_voter.csv", index=False)
+Data2.to_csv("step2_voter.csv", index=False)
