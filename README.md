@@ -15,6 +15,7 @@
   + [data saved as csv for processing in next step](data_clean/step1_voter.zip)
 
 + [Step 2: convert string to numbers](data_clean/converting_strings2numbers.py)
+  + this step is in python, and data processed is [saved in csv](data_clean/step2_voter.zip)
 
 + [Step 3: adding missing/don'tknow mark column](data_clean/mark.R)
 
