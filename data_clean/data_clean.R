@@ -11,7 +11,7 @@ file <- "VOTER_Survey_December16_Release1.csv"
 voter <- read_csv(file, na = c("", "NA", "__NA__"))
 
 # read in drop list by Floris
-rms <- readLines("delete_variable_identified_by_floris.txt")
+rms <- readLines("data_clean/delete_variable_identified_by_floris.txt")
 drop_var <- sub(".*del df\\['", "", rms)
 drop_var <- sub("'\\].*", "", drop_var)
 drop_col <- which(colnames(voter) %in% drop_var)
