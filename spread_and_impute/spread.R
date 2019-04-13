@@ -25,7 +25,4 @@ folds <- cut(sample(1:8000,8000), breaks=10, labels=FALSE)
 voter_train <- voter2[which(folds %in% 1:8),]
 voter_test <- voter2[which(folds %in% 9:10),]
 
-# impute train
-library(mice)
-voter_train_imp <- mice(voter_train, m=5, maxit = 50,
-                        method = 'pmm', seed = 500)
+save(voter_train, voter_test, file = "spread_and_impute/train_test.rda")
