@@ -19,15 +19,15 @@
 
   + NA and don't know are replaced with neutral number (i.e. 0 in this case), and a missing indicator column is added for each column with NA
 
-  + [data saved as csv step1_voter for processing in next step](data_clean/step1_voter.zip)
+  + [data saved as csv step1_voter for processing in next step](data_clean/step_voter.zip)
 
 + [Step 2: convert string to numbers](data_clean/converting_strings2numbers.py)
 
-  + this step is in python, and data processed is [saved in csv as step2_voter](data_clean/step2_voter.zip)
+  + this step is in python, and data processed is [saved in csv as step2_voter](data_clean/step_voter.zip)
 
-+ [Step 3: adding missing/don'tknow mark column](data_clean/mark.R)
++ [Step 3: adding missing/don't know mark column](data_clean/mark.R)
 
-  + [this is the data after processing step 3](data_clean/step3_voter.zip)
+  + [this is the data after processing step 3](data_clean/step3.rda)
 
 ![](markdown_files/step0-3.jpg)
 
