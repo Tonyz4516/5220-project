@@ -27,7 +27,7 @@
 
 + [Step 3.0: adding missing/don't know mark column](data_clean/mark.R)
 
-+ [Step 3.1: spread categorical data (one hot encoding)](data_clean/spread.R)
++ [Step 3.1: spread categorical data (one hot encoding)](spread_and_impute/spread.R)
 
   + [this is the data after processing step 3](data_clean/step3.rda)
 
