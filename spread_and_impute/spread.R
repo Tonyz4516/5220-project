@@ -1,11 +1,12 @@
 source("http://bit.ly/sentiment_required_packages")
 library(caret) # for dummyVars
 library(data.table)
+rm(list = ls())
 
-load("../../Downloads/voter_data/step3.rda")
+load("data_clean/step3.rda")
 
 orders = 
-    read.xlsx("../../Documents/GitHub/5220-project/data_clean/variable_identification.xlsx")
+    read.xlsx("data_clean/variable_identification.xlsx")
 
 # one hot encoding (spread) for categorical data
 loc = which(colnames(voter) %in% orders$X1[which(orders$category == "2.0")])
@@ -15,8 +16,8 @@ dmy = dummyVars(" ~ .", data = adjust)
 newdf <- data.frame(predict(dmy, newdata = adjust))
 
 voter2 = cbind(voter[,-loc], newdf)
-NA_col = apply(voter2, 2, function(x) sum(is.na(x)))
-voter2 = voter2[,-which(NA_col >= 4000)]
+# NA_col = apply(voter2, 2, function(x) sum(is.na(x)))
+# voter2 = voter2[,-which(NA_col >= 4000)]
 
 # train-test split
 set.seed(12345)
