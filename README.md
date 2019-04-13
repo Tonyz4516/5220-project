@@ -25,7 +25,9 @@
 
   + this step is in python, and data processed is [saved in csv as step2_voter](data_clean/step_voter.zip)
 
-+ [Step 3: adding missing/don't know mark column](data_clean/mark.R)
++ [Step 3.0: adding missing/don't know mark column](data_clean/mark.R)
+
++ [Step 3.1: spread categorical data (one hot encoding)](data_clean/spread.R)
 
   + [this is the data after processing step 3](data_clean/step3.rda)
 
