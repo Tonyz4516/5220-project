@@ -12,7 +12,7 @@ voter2 <- as.data.frame(apply(voter2,2,function(x) return(tolower(x))),
                         stringsAsFactors = F)
 
 # import manually identified ordinal colnames
-variables <- read.xlsx("variable_identification.xlsx")
+variables <- read.xlsx("data_clean/variable_identification.xlsx")
 ordinal_colnames <-
     variables$X1[which(grepl(3, variables$category) +
                            grepl("ordinal", variables$category) >0)]
