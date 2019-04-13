@@ -29,7 +29,7 @@
 
   + [this is the data after processing step 3](data_clean/step3.rda)
   
-+ [Step 3.1: spread categorical data (one hot encoding) and split into train / test set](spread_and_impute/spread.R)
++ [Step 4: spread categorical data (one hot encoding) and split into train / test set](spread_and_impute/spread.R)
 
   + [train and test set](spread_and_impute/train_test.rda)
 
