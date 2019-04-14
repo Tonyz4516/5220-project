@@ -7,14 +7,122 @@ load library
 
 ```{r lib}
 source("http://bit.ly/sentiment_required_packages")
-library(caret)
+load_package("caret")
 ```
 
 load data
 
 ```{r load data}
-getwd()
-load("../../Documents/GitHub/5220-project/data_clean/step3.rda")
+load("../data_clean/step3.rda")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+load manual labels
+
+```{r}
+orders = read.xlsx("../data_clean/variable_identification.xlsx")
+```
+
+### train-test split and impute
+
+train-test split
+
+```{r train test split}
+set.seed(12345)
+orders <- sample(1:8000,8000)
+voter_train <- voter[orders[1:6400],]
+voter_test <- voter[orders[6401:8000],]
+```
+
+impute training set
+
+```{r impute, message=FALSE}
+load_package("Hmisc")
+
+# impute with random value
+voter_train = apply(voter_train, 2, function(x) impute(x, 'random'))
+voter_train = as.data.frame(voter_train)
+```
+
+### implement random forest
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+### use logistic to explain the result
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
