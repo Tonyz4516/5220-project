@@ -1,0 +1,20 @@
+---
+title: "random forest"
+output: html_document
+---
+
+load library
+
+```{r lib}
+source("http://bit.ly/sentiment_required_packages")
+library(caret)
+```
+
+load data
+
+```{r load data}
+getwd()
+load("../../Documents/GitHub/5220-project/data_clean/step3.rda")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

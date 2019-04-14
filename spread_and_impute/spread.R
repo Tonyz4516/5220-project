@@ -3,7 +3,7 @@ library(caret) # for dummyVars
 library(data.table)
 rm(list = ls())
 
-load("data_clean/step3.rda")
+load("../../Documents/GitHub/5220-project/data_clean/step3.rda")
 
 orders = 
     read.xlsx("data_clean/variable_identification.xlsx")
