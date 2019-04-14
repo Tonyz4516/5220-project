@@ -4,8 +4,6 @@ require(dplyr)
 require(plotly)
 require(tidyr)
 
-# tony's project wd: "sml_assignment/project/"
-
 # import data
 file <- "VOTER_Survey_December16_Release1.csv"
 voter <- read_csv(file, na = c("", "NA", "__NA__"))

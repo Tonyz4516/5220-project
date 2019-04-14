@@ -19,7 +19,7 @@ load("../data_clean/step3.rda")
 load manual labels
 
 ```{r}
-orders = read.xlsx("../data_clean/variable_identification.xlsx")
+category = read.xlsx("../data_clean/variable_identification.xlsx")
 ```
 
 ### train-test split and impute
@@ -28,37 +28,77 @@ train-test split
 
 ```{r train test split}
 set.seed(12345)
-orders <- sample(1:8000,8000)
-voter_train <- voter[orders[1:6400],]
-voter_test <- voter[orders[6401:8000],]
+orders = sample(1:8000,8000)
+voter_train = voter[orders[1:6400],]
+voter_test = voter[orders[6401:8000],]
 ```
 
 impute training set
 
 ```{r impute, message=FALSE}
 load_package("Hmisc")
+require(e1071)
+detach("package:e1071", unload=TRUE)
 
 # impute with random value
 voter_train = apply(voter_train, 2, function(x) impute(x, 'random'))
-voter_train = as.data.frame(voter_train)
+voter_train = as.data.frame(voter_train, stringsAsFactors = F)
 ```
 
 ### implement random forest
 
-```{r}
+load required package for random forest
 
+```{r, message=FALSE}
+load_package(c("randomForest", "caret", "e1071"))
+```
+
+```{r}
+# result is presvote16post_2016
+# grid search
+grid1 = rep(NA, 15)
+grid2 = rep(NA, 15)
+count = 1
+m = c(20,30,40,50,60)
+tree_size = c(10,20,30)
+for (i in 1:5) {
+    for (j in 1:3){
+       grid1[count] = m[i]
+       grid2[count] = tree_size[j]
+       count = count + 1
+    }
+}
+grid = as.data.frame(matrix(c(grid1, grid2), ncol = 2))
+colnames(grid) = c("m", "ntrees")
+```
+
+convert categorical and ordinal columns to factor
+
+and drop column **with only one level**
+
+```{r}
+drop_col = rep(NA, 200)
+count = 1
+col_fac = which(category$category %in% c("0.0", "2.0", "3.0"))
+for (i in 1:length(col_fac)) {
+    voter_train[,col_fac[i]] = as.factor(voter_train[,col_fac[i]])
+    if (length(levels(voter_train[,col_fac[i]])) <= 1) {
+        drop_col[count] = col_fac[i]
+        count = count + 1
+    }
+}
+drop_col = drop_col[!is.na(drop_col)]
 ```
 
 
-
 ```{r}
-
-```
-
-step
-
-```{r}
-
+set.seed(12345)
+# Run the model
+rf_default = train(presvote16post_2016~.,
+    data = voter_train,
+    method = "rf",
+    metric = "Accuracy",
+    trControl = trControl)
 ```
 
 step
