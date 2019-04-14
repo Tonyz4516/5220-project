@@ -279,3 +279,4 @@
     del df['volunteerorg2_5_baseline']
     del df['pew_prayer_baseline']
     del df['faminc_baseline']
+    del df['teapartsup_baseline']
