@@ -31,7 +31,7 @@
   
 + [Step 4: spread categorical data (one hot encoding) and split into train / test set](spread_and_impute/spread.R)
 
-  + [train and test set](spread_and_impute/train_test.rda)
+  + [data after step 4: one hot encoding applied](spread_and_impute/train_test.rda)
 
 ![](markdown_files/step0-3.jpg)
 
