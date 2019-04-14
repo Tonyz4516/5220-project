@@ -37,25 +37,3 @@ for j in range(15):
 
 #Done!
 Data2.to_csv("step2_voter.csv", index=False)
-
-
-# alternative code
-
-# import re
-# import numpy as np
-# import pandas as pd
-# 
-# voter = pd.read_csv("step1_voter.csv")
-# 
-# pattern = re.compile(r"^[0-9]{2,3} *- *[A-Za-z ]+$")
-# pattern2 = re.compile(r" *- *[A-Za-z ]+")
-# 
-# # count = 0
-# for col in voter.columns:
-#     if voter[col].dtype == "object":
-#         if np.nansum(voter[col].str.match(pattern)) > 0:
-#             # if pattern found
-#             voter[col] = voter[col].str.replace(pattern2, "")
-#             # count += 1
-# 
-# voter.to_csv("step2_voter.csv", index=False)
