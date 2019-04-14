@@ -15,3 +15,9 @@ library(Amelia)
 voter_train_imp <- 
     amelia(voter_train, m=1, 
            parallel = "multicore", noms = "accurately_counted_2016")
+
+
+
+cl<-makeCluster(10,type="SOCK")
+a = clusterApply(cl, voter_train, function(x) )
+stopCluster(cl)
