@@ -109,6 +109,14 @@ voter_train = voter_train[,-drop_col]
 voter_train = voter_train[,-c(1:2)]
 ```
 
+we only care about 3 classes for results, so convert:
+
+```{r}
+r = as.character(voter_train$presvote16post_2016)
+r = ifelse(r %in% c("donald trump", "hillary clinton"), r, "others")
+voter_train$presvote16post_2016 = as.factor(r)
+```
+
 use CV and grid search to evaluate the models
 
 ```{r}
