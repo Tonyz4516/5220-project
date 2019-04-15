@@ -76,9 +76,6 @@ convert categorical and ordinal columns to factor
 
 and drop column **with only one level**
 
-```{r}
-voter_train = voter_backup
-```
 ```{r, message=FALSE}
 # ordinal and contious variables
 col_num = which(category$category %in% c("1.0", "3.0"))
@@ -116,8 +113,8 @@ use CV and grid search to evaluate the models
 
 ```{r}
 trControl <- trainControl(method = "cv",
-                          number = 10,
-                          search = "grid")
+                          number = 5,
+                          search = "random")
 ```
 
 ```{r}
