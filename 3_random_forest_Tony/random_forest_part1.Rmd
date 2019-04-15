@@ -12,7 +12,7 @@ load_package("caret")
 
 load data
 
-```{r load data} 
+```{r load data}
 load("../data_clean/step3.rda")
 ```
 
