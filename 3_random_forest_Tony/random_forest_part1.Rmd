@@ -5,7 +5,7 @@ output: html_document
 
 load library
 
-```{r lib}
+```{r lib, message=FALSE}
 source("http://bit.ly/sentiment_required_packages")
 load_package("caret")
 ```
@@ -77,9 +77,29 @@ convert categorical and ordinal columns to factor
 and drop column **with only one level**
 
 ```{r}
-drop_col = rep(NA, 200)
+voter_train = voter_backup
+```
+```{r, message=FALSE}
+# ordinal and contious variables
+col_num = which(category$category %in% c("1.0", "3.0"))
+for (i in 1:length(col_num)) {
+    if (sum(is.na(as.numeric(voter_train[,col_num[i]]))) == 0) {
+        voter_train[,col_num[i]] =
+            as.numeric(voter_train[,col_num[i]])
+    } else {
+        # if convert failed, it is not numeric
+        col_num[i] = NA
+    }
+}
+col_num = col_num[!is.na(col_num)]
+```
+
+```{r}
+# convert factor
 count = 1
-col_fac = which(category$category %in% c("0.0", "2.0", "3.0"))
+drop_col = rep(NA, 200)
+col_fac = which(! 1:ncol(voter_train) %in% col_num)
+# View(voter_train[1:100, col_fac])
 for (i in 1:length(col_fac)) {
     voter_train[,col_fac[i]] = as.factor(voter_train[,col_fac[i]])
     if (length(levels(voter_train[,col_fac[i]])) <= 1) {
@@ -89,14 +109,18 @@ for (i in 1:length(col_fac)) {
 }
 drop_col = drop_col[!is.na(drop_col)]
 voter_train = voter_train[,-drop_col]
+voter_train = voter_train[,-c(1:2)]
 ```
 
+use CV and grid search to evaluate the models
 
 ```{r}
 trControl <- trainControl(method = "cv",
                           number = 10,
                           search = "grid")
+```
 
+```{r}
 set.seed(12345)
 # Run the model
 rf_default = train(presvote16post_2016~.,
