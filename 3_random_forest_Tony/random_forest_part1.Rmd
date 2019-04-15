@@ -118,6 +118,7 @@ trControl <- trainControl(method = "cv",
 ```
 
 ```{r}
+start = Sys.time()
 set.seed(12345)
 # Run the model
 rf_default = train(presvote16post_2016~.,
@@ -125,6 +126,8 @@ rf_default = train(presvote16post_2016~.,
     method = "rf",
     metric = "Accuracy",
     trControl = trControl)
+# measure time of train
+print(Sys.time() - start)
 ```
 
 print results
