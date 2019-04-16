@@ -122,14 +122,14 @@ use CV and grid search to evaluate the models
 ```{r}
 trControl <- trainControl(method = "cv",
                           number = 5,
-                          search = "random",
+                          search = "grid",
                           verboseIter = TRUE)
 ```
 
 ```{r}
 start = Sys.time()
 set.seed(12345)
-tuneGrid <- expand.grid(.mtry = c(1: 10))
+tuneGrid <- expand.grid(.mtry = c(3:10, 20, 30, 40, 50))
 rf_mtry <- train(presvote16post_2016~.,
     data = voter_train,
     method = "rf",
