@@ -1,0 +1,206 @@
+---
+title: "random forest"
+output: html_document
+---
+
+load library
+
+```{r lib, message=FALSE}
+source("http://bit.ly/sentiment_required_packages")
+load_package("caret")
+```
+
+load data
+
+```{r load data}
+load("../data_clean/step3.rda")
+```
+
+load manual labels
+
+```{r}
+category = read.xlsx("../data_clean/variable_identification.xlsx")
+```
+
+### train-test split and impute
+
+train-test split
+
+```{r train test split}
+set.seed(12345)
+orders = sample(1:8000,8000)
+voter_train = voter[orders[1:6400],]
+voter_test = voter[orders[6401:8000],]
+```
+
+impute training set
+
+```{r impute, message=FALSE}
+load_package("Hmisc")
+require(e1071)
+detach("package:e1071", unload=TRUE)
+
+# impute with random value
+voter_train = apply(voter_train, 2, function(x) impute(x, 'random'))
+voter_train = as.data.frame(voter_train, stringsAsFactors = F)
+```
+
+### implement random forest
+
+load required package for random forest
+
+```{r, message=FALSE}
+load_package(c("randomForest", "caret", "e1071"))
+```
+
+```{r}
+# result is presvote16post_2016
+# grid search
+# grid1 = rep(NA, 15)
+# grid2 = rep(NA, 15)
+# count = 1
+# m = c(20,30,40,50,60)
+# tree_size = c(10,20,30)
+# for (i in 1:5) {
+#     for (j in 1:3){
+#        grid1[count] = m[i]
+#        grid2[count] = tree_size[j]
+#        count = count + 1
+#     }
+# }
+# grid = as.data.frame(matrix(c(grid1, grid2), ncol = 2))
+# colnames(grid) = c("m", "ntrees")
+```
+
+convert categorical and ordinal columns to factor
+
+and drop column **with only one level**
+
+```{r, message=FALSE}
+# ordinal and contious variables
+col_num = which(category$category %in% c("1.0", "3.0"))
+for (i in 1:length(col_num)) {
+    if (sum(is.na(as.numeric(voter_train[,col_num[i]]))) == 0) {
+        voter_train[,col_num[i]] =
+            as.numeric(voter_train[,col_num[i]])
+    } else {
+        # if convert failed, it is not numeric
+        col_num[i] = NA
+    }
+}
+col_num = col_num[!is.na(col_num)]
+```
+
+```{r}
+# convert factor
+count = 1
+drop_col = rep(NA, 200)
+col_fac = which(! 1:ncol(voter_train) %in% col_num)
+# View(voter_train[1:100, col_fac])
+for (i in 1:length(col_fac)) {
+    voter_train[,col_fac[i]] = as.factor(voter_train[,col_fac[i]])
+    if (length(levels(voter_train[,col_fac[i]])) <= 1) {
+        drop_col[count] = col_fac[i]
+        count = count + 1
+    }
+}
+drop_col = drop_col[!is.na(drop_col)]
+voter_train = voter_train[,-drop_col]
+voter_train = voter_train[,-c(1:2)]
+```
+
+we only care about 3 classes for results, so convert:
+
+```{r}
+r = as.character(voter_train$presvote16post_2016)
+r = ifelse(r %in% c("donald trump", "hillary clinton"), r, "others")
+voter_train$presvote16post_2016 = as.factor(r)
+```
+
+use CV and grid search to evaluate the models
+
+```{r}
+trControl <- trainControl(method = "cv",
+                          number = 5,
+                          search = "random",
+                          verboseIter = TRUE)
+```
+
+```{r}
+start = Sys.time()
+set.seed(12345)
+# Run the model
+rf_default = train(presvote16post_2016~.,
+    data = voter_train,
+    method = "rf",
+    metric = "Accuracy",
+    trControl = trControl)
+# measure time of train
+print(Sys.time() - start)
+```
+
+print results
+
+```{r}
+print(rf_default)
+```
+
+step
+
+```{r}
+
+```
+
+### use logistic to explain the result
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
