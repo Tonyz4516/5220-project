@@ -129,7 +129,7 @@ trControl <- trainControl(method = "cv",
 ```{r train1}
 start = Sys.time()
 set.seed(12345)
-tuneGrid <- expand.grid(.mtry = c(seq(60,150,10)))
+tuneGrid <- expand.grid(.mtry = c(seq(60,120,10)))
 rf_mtry <- train(presvote16post_2016~.,
     data = voter_train,
     method = "rf",
