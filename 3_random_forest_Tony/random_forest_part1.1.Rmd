@@ -185,8 +185,8 @@ start = Sys.time()
 store_maxtrees <- list()
 for (ntree in c(250, 300, 350, 400, 450, 500, 550, 600, 800, 1000, 2000)) {
     set.seed(5678)
-    rf_maxtrees <- train(survived~.,
-        data = data_train,
+    rf_maxtrees <- train(presvote16post_2016~.,
+        data = voter_train,
         method = "rf",
         metric = "Accuracy",
         tuneGrid = tuneGrid,
