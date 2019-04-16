@@ -126,7 +126,7 @@ trControl <- trainControl(method = "cv",
                           verboseIter = TRUE)
 ```
 
-```{r}
+```{r train1}
 start = Sys.time()
 set.seed(12345)
 tuneGrid <- expand.grid(.mtry = c(3:10, 20, 30, 40, 50))
