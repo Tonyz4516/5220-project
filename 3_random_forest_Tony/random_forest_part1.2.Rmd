@@ -299,7 +299,7 @@ print(Sys.time() - start)
 ```
 
 ```{r}
-prediction <-predict(fit_rf, voter_test1)
+prediction <- predict(fit_rf1, voter_test1)
 confusionMatrix(prediction, voter_test1$presvote16post_2016)
 ```
 
