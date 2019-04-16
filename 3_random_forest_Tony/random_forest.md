@@ -9,6 +9,7 @@ The time complexity for random forest  is O(v * n * log(n)), where v is the numb
 In step 1, number of features chosen for each tree (**m**) has been determined by cross validation:
 
 ![](cv_mtry1.PNG)
+
 ![](cv_mtry2.PNG)
 
 Cross validation determined that m = 110 provide the highest cross validated accuracy. This step along took the computer over 6 hours to run.
