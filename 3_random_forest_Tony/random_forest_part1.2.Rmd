@@ -209,9 +209,28 @@ print(Sys.time() - start)
 summary(results_tree)
 ```
 
-```{r}
+### fit with best parameter
 
+```{r}
+fit_rf <- train(presvote16post_2016~.,
+                data = voter_train,
+                method = "rf",
+                metric = "Accuracy",
+                tuneGrid = tuneGrid,
+                trControl = trControl,
+                importance = TRUE,
+                nodesize = 14,
+                ntree = 800,
+                maxnodes = 24)
 ```
+
+### Evaluate the model
+
+```{r}
+prediction <-predict(fit_rf, data_test)
+confusionMatrix(prediction, data_test$survived)
+```
+
 
 ### use logistic to explain the result
 
