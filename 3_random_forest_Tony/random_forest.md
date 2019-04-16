@@ -10,10 +10,10 @@ In step 1, number of features chosen for each tree (**m**) has been determined b
 
 ![](cv_mtry1.PNG)
 
-![](cv_mtry2.PNG)
+![](cv_mtry2.png)
 
 Cross validation determined that m = 110 provide the highest cross validated accuracy. This step along took the computer over 6 hours to run.
 
-![](cv_mtry_time.PNG)
+![](cv_mtry_time.png)
 
 To interpret the model, we used logistic regression with 20 most important features as determined by Random Forest.
