@@ -127,26 +127,107 @@ trControl <- trainControl(method = "cv",
 ```
 
 ```{r train1}
-start = Sys.time()
-set.seed(12345)
-tuneGrid <- expand.grid(.mtry = c(seq(60,120,10)))
-rf_mtry <- train(presvote16post_2016~.,
-    data = voter_train,
-    method = "rf",
-    metric = "Accuracy",
-    tuneGrid = tuneGrid,
-    trControl = trControl,
-    importance = TRUE,
-    nodesize = 14,
-    ntree = 300)
-# measure time of train
-print(Sys.time() - start)
+# start = Sys.time()
+# set.seed(12345)
+# tuneGrid <- expand.grid(.mtry = c(seq(60,120,10)))
+# rf_mtry <- train(presvote16post_2016~.,
+#     data = voter_train,
+#     method = "rf",
+#     metric = "Accuracy",
+#     tuneGrid = tuneGrid,
+#     trControl = trControl,
+#     importance = TRUE,
+#     nodesize = 14,
+#     ntree = 300)
+# # measure time of train
+# print(Sys.time() - start)
 ```
 
 print results
 
 ```{r}
 print(rf_mtry)
+```
+
+search for the best maxnode
+
+```{r best maxnode}
+start = Sys.time()
+store_maxnode <- list()
+tuneGrid <- expand.grid(.mtry = 110) # best mtry
+for (maxnodes in c(5: 15)) {
+    set.seed(1234)
+    rf_maxnode <- train(presvote16post_2016~.,
+        data = voter_train,
+        method = "rf",
+        metric = "Accuracy",
+        tuneGrid = tuneGrid,
+        trControl = trControl,
+        importance = TRUE,
+        nodesize = 14,
+        maxnodes = maxnodes,
+        ntree = 300)
+    current_iteration <- toString(maxnodes)
+    store_maxnode[[current_iteration]] <- rf_maxnode
+}
+results_mtry <- resamples(store_maxnode)
+print(Sys.time() - start)
+```
+
+```{r}
+summary(results_mtry)
+```
+
+search for best ntree
+
+```{r best ntree}
+start = Sys.time()
+store_maxtrees <- list()
+for (ntree in c(250, 300, 350, 400, 450, 500, 550, 600, 800, 1000, 2000)) {
+    set.seed(5678)
+    rf_maxtrees <- train(survived~.,
+        data = data_train,
+        method = "rf",
+        metric = "Accuracy",
+        tuneGrid = tuneGrid,
+        trControl = trControl,
+        importance = TRUE,
+        nodesize = 14,
+        maxnodes = 15,
+        ntree = ntree)
+    key <- toString(ntree)
+    store_maxtrees[[key]] <- rf_maxtrees
+}
+results_tree <- resamples(store_maxtrees)
+print(Sys.time() - start)
+```
+
+```{r}
+summary(results_tree)
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
 ```
 
 step
@@ -156,54 +237,6 @@ step
 ```
 
 ### use logistic to explain the result
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
 
 ```{r}
 
