@@ -129,7 +129,7 @@ trControl <- trainControl(method = "cv",
 ```{r train1}
 start = Sys.time()
 set.seed(12345)
-tuneGrid <- expand.grid(.mtry = c(3:10, 20, 30, 40, 50))
+tuneGrid <- expand.grid(.mtry = c(3:10, seq(20,120,10)))
 rf_mtry <- train(presvote16post_2016~.,
     data = voter_train,
     method = "rf",
@@ -141,16 +141,18 @@ rf_mtry <- train(presvote16post_2016~.,
     ntree = 300)
 # measure time of train
 print(Sys.time() - start)
-print(rf_mtry)
+
+# took about 9 hours to run this step, use 110 as best mtry
+
 ```
 
 print results
 
 ```{r}
-print(rf_default)
+print(rf_mtry)
 ```
 
-step
+
 
 ```{r}
 
