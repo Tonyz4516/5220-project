@@ -8,6 +8,7 @@ load library
 ```{r lib, message=FALSE}
 source("http://bit.ly/sentiment_required_packages")
 load_package("caret")
+download.file("https://raw.githubusercontent.com/Tonyz4516/5220-project/master/3_random_forest_Tony/random_forest_part1.1.Rmd?token=AKWMDPWXZQFJGXQLGRQ22H24YDEWO", destfile = "random_forest_part1.1.Rmd")
 ```
 
 load data
