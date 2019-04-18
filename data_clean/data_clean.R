@@ -5,11 +5,11 @@ require(plotly)
 require(tidyr)
 
 # import data
-file <- "VOTER_Survey_December16_Release1.csv"
+file <- "../../Downloads/voter_data/VOTER_Survey_December16_Release1.csv"
 voter <- read_csv(file, na = c("", "NA", "__NA__"))
 
 # read in drop list by Floris
-rms <- readLines("data_clean/delete_variable_identified_by_floris.txt")
+rms <- readLines("../../Documents/GitHub/5220-project/data_clean/delete_variable_identified_by_floris.txt")
 drop_var <- sub(".*del df\\['", "", rms)
 drop_var <- sub("'\\].*", "", drop_var)
 drop_col <- which(colnames(voter) %in% drop_var)
@@ -30,3 +30,26 @@ voter1 <- voter
 col_w_50_NA <- which(apply(voter, 2, pNAorDontKnow) >= 0.5)
 drop <- unique(c(drop_col, col_w_50_NA))
 voter2 <- voter1[,-drop]
+
+# missing map
+
+library(reshape2)
+library(ggplot2)
+
+ggplot_missing <- function(x){
+    x %>% 
+        is.na %>%
+        melt %>%
+        ggplot(data = .,
+               aes(x = Var2,
+                   y = Var1)) +
+        geom_raster(aes(fill = value)) +
+        scale_fill_grey(name = "",
+                        labels = c("Present","Missing")) +
+        theme_minimal() + 
+        theme(axis.text.x  = element_text(angle=45, vjust=0.5)) + 
+        labs(x = "Variables in Dataset",
+             y = "Rows / observations")
+}
+
+ggplot_missing(voter2)
