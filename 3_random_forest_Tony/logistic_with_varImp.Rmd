@@ -67,18 +67,17 @@ fit = glm(presvote16post_2016~., data = voter_tr,
 ```
 
 ```{r}
-sink("logit_results.txt")
-print(coef(fit))
-sink()
+# sink("logit_results.txt")
+# print(coef(fit))
+# sink()
 ```
 
-on test set
-
-step
+summarize
 
 ```{r}
-y_hat = predict(fit, voter_te)
-# acc = abs(y_hat - 
+sink("fit_sum.txt")
+summary(fit)
+sink()
 ```
 
 step
