@@ -13,26 +13,36 @@ load_package("glmnet")
 load data
 
 ```{r load data}
-load("../data_clean/step3.rda")
+load("../3_random_forest_Tony/rf_d.rda")
 ```
 
 
 ### use logistic to explain the result
 
 ```{r}
-
+# 20 most important vars after fixing
+top_20 = readLines("top_20.txt")
+cols = which(colnames(voter_train) %in% top_20)
+cols = c(cols,3)
+voter_tr = voter_train[,cols]
+voter_te = voter_test[,cols]
 ```
 
-step
+convert to 2 classes: Trump and not Trump
 
 ```{r}
-
+a = as.character(voter_tr$presvote16post_2016)
+b = as.character(voter_te$presvote16post_2016)
+a = ifelse(a == "donald trump", 1, 0)
+b = ifelse(b == "donald trump", 1, 0)
+voter_tr$presvote16post_2016 = as.factor(a)
+voter_te$presvote16post_2016 = as.factor(b)
 ```
 
-step
+# run logistic
 
 ```{r}
-
+fit = glm(presvote16post_2016~., data = voter_tr, family = "binomial")
 ```
 
 step
