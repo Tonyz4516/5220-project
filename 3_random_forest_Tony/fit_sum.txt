@@ -1,0 +1,196 @@
+
+Call:
+glm(formula = presvote16post_2016 ~ ., family = binomial(link = "logit"), 
+    data = voter_tr, maxit = 1000)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.7737  -0.2643  -0.1321   0.3661   3.0973  
+
+Coefficients:
+                                                                                                            Estimate
+(Intercept)                                                                                                -1.707261
+accurately_counted2_2016                                                                                    0.140297
+obamaapp_2016                                                                                              -0.420635
+fav_obama_2016                                                                                             -0.232829
+fav_sanders_2016                                                                                           -0.093226
+ft_fem_2016                                                                                                -0.007311
+ft_blm_2016                                                                                                -0.004468
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify  -0.572113
+view_transgender_2016should be required to use the restrooms of the gender they were born into              0.213480
+police_threat_2016isolated incidents                                                                        0.247807
+police_threat_2016part of a broader pattern                                                                -0.313241
+univhealthcov_2016no                                                                                       -0.333999
+univhealthcov_2016yes                                                                                      -0.209300
+healthreformbill_2016                                                                                      -0.382253
+policies_favor_2016                                                                                         0.353813
+pid3_2016independent                                                                                        0.303815
+pid3_2016not sure                                                                                           0.491137
+pid3_2016other                                                                                             -0.235732
+pid3_2016republican                                                                                         0.895561
+obamaapp_baseline                                                                                           0.104887
+vote_generic_baselinenot sure                                                                              -0.153796
+vote_generic_baselineother                                                                                 -0.320800
+vote_generic_baselinethe democratic party candidate                                                        -0.397249
+vote_generic_baselinethe republican party candidate                                                        -0.197076
+presvote08_baseline5                                                                                        0.420202
+presvote08_baselinebarack obama                                                                             0.303563
+presvote08_baselinejohn mccain                                                                              0.536003
+presvote08_baselineother candidate                                                                          0.238975
+fav_obama_baseline                                                                                          0.032513
+post_presvote12_2012i did not vote                                                                        -10.533968
+post_presvote12_2012i did not vote in this race                                                            -1.466749
+post_presvote12_2012mitt romney                                                                             0.707736
+post_presvote12_2012not sure                                                                               -0.020664
+post_presvote12_2012other candidate                                                                        -0.701642
+                                                                                                          Std. Error
+(Intercept)                                                                                                 0.683512
+accurately_counted2_2016                                                                                    0.039778
+obamaapp_2016                                                                                               0.053545
+fav_obama_2016                                                                                              0.054283
+fav_sanders_2016                                                                                            0.038564
+ft_fem_2016                                                                                                 0.001935
+ft_blm_2016                                                                                                 0.001800
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify   0.135464
+view_transgender_2016should be required to use the restrooms of the gender they were born into              0.121897
+police_threat_2016isolated incidents                                                                        0.147320
+police_threat_2016part of a broader pattern                                                                 0.162755
+univhealthcov_2016no                                                                                        0.163391
+univhealthcov_2016yes                                                                                       0.168970
+healthreformbill_2016                                                                                       0.067268
+policies_favor_2016                                                                                         0.083568
+pid3_2016independent                                                                                        0.137441
+pid3_2016not sure                                                                                           0.312175
+pid3_2016other                                                                                              0.287475
+pid3_2016republican                                                                                         0.158168
+obamaapp_baseline                                                                                           0.068601
+vote_generic_baselinenot sure                                                                               0.263682
+vote_generic_baselineother                                                                                  0.338453
+vote_generic_baselinethe democratic party candidate                                                         0.284327
+vote_generic_baselinethe republican party candidate                                                         0.274581
+presvote08_baseline5                                                                                        0.647406
+presvote08_baselinebarack obama                                                                             0.572094
+presvote08_baselinejohn mccain                                                                              0.573724
+presvote08_baselineother candidate                                                                          0.601342
+fav_obama_baseline                                                                                          0.049565
+post_presvote12_2012i did not vote                                                                        324.743879
+post_presvote12_2012i did not vote in this race                                                             0.792241
+post_presvote12_2012mitt romney                                                                             0.145098
+post_presvote12_2012not sure                                                                                0.583592
+post_presvote12_2012other candidate                                                                         0.227188
+                                                                                                          z value
+(Intercept)                                                                                                -2.498
+accurately_counted2_2016                                                                                    3.527
+obamaapp_2016                                                                                              -7.856
+fav_obama_2016                                                                                             -4.289
+fav_sanders_2016                                                                                           -2.417
+ft_fem_2016                                                                                                -3.779
+ft_blm_2016                                                                                                -2.482
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify  -4.223
+view_transgender_2016should be required to use the restrooms of the gender they were born into              1.751
+police_threat_2016isolated incidents                                                                        1.682
+police_threat_2016part of a broader pattern                                                                -1.925
+univhealthcov_2016no                                                                                       -2.044
+univhealthcov_2016yes                                                                                      -1.239
+healthreformbill_2016                                                                                      -5.683
+policies_favor_2016                                                                                         4.234
+pid3_2016independent                                                                                        2.211
+pid3_2016not sure                                                                                           1.573
+pid3_2016other                                                                                             -0.820
+pid3_2016republican                                                                                         5.662
+obamaapp_baseline                                                                                           1.529
+vote_generic_baselinenot sure                                                                              -0.583
+vote_generic_baselineother                                                                                 -0.948
+vote_generic_baselinethe democratic party candidate                                                        -1.397
+vote_generic_baselinethe republican party candidate                                                        -0.718
+presvote08_baseline5                                                                                        0.649
+presvote08_baselinebarack obama                                                                             0.531
+presvote08_baselinejohn mccain                                                                              0.934
+presvote08_baselineother candidate                                                                          0.397
+fav_obama_baseline                                                                                          0.656
+post_presvote12_2012i did not vote                                                                         -0.032
+post_presvote12_2012i did not vote in this race                                                            -1.851
+post_presvote12_2012mitt romney                                                                             4.878
+post_presvote12_2012not sure                                                                               -0.035
+post_presvote12_2012other candidate                                                                        -3.088
+                                                                                                          Pr(>|z|)
+(Intercept)                                                                                               0.012497
+accurately_counted2_2016                                                                                  0.000420
+obamaapp_2016                                                                                             3.97e-15
+fav_obama_2016                                                                                            1.79e-05
+fav_sanders_2016                                                                                          0.015629
+ft_fem_2016                                                                                               0.000157
+ft_blm_2016                                                                                               0.013077
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify 2.41e-05
+view_transgender_2016should be required to use the restrooms of the gender they were born into            0.079893
+police_threat_2016isolated incidents                                                                      0.092549
+police_threat_2016part of a broader pattern                                                               0.054277
+univhealthcov_2016no                                                                                      0.040937
+univhealthcov_2016yes                                                                                     0.215464
+healthreformbill_2016                                                                                     1.33e-08
+policies_favor_2016                                                                                       2.30e-05
+pid3_2016independent                                                                                      0.027070
+pid3_2016not sure                                                                                         0.115655
+pid3_2016other                                                                                            0.412210
+pid3_2016republican                                                                                       1.50e-08
+obamaapp_baseline                                                                                         0.126281
+vote_generic_baselinenot sure                                                                             0.559716
+vote_generic_baselineother                                                                                0.343210
+vote_generic_baselinethe democratic party candidate                                                       0.162367
+vote_generic_baselinethe republican party candidate                                                       0.472921
+presvote08_baseline5                                                                                      0.516303
+presvote08_baselinebarack obama                                                                           0.595685
+presvote08_baselinejohn mccain                                                                            0.350173
+presvote08_baselineother candidate                                                                        0.691070
+fav_obama_baseline                                                                                        0.511841
+post_presvote12_2012i did not vote                                                                        0.974123
+post_presvote12_2012i did not vote in this race                                                           0.064113
+post_presvote12_2012mitt romney                                                                           1.07e-06
+post_presvote12_2012not sure                                                                              0.971754
+post_presvote12_2012other candidate                                                                       0.002013
+                                                                                                             
+(Intercept)                                                                                               *  
+accurately_counted2_2016                                                                                  ***
+obamaapp_2016                                                                                             ***
+fav_obama_2016                                                                                            ***
+fav_sanders_2016                                                                                          *  
+ft_fem_2016                                                                                               ***
+ft_blm_2016                                                                                               *  
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify ***
+view_transgender_2016should be required to use the restrooms of the gender they were born into            .  
+police_threat_2016isolated incidents                                                                      .  
+police_threat_2016part of a broader pattern                                                               .  
+univhealthcov_2016no                                                                                      *  
+univhealthcov_2016yes                                                                                        
+healthreformbill_2016                                                                                     ***
+policies_favor_2016                                                                                       ***
+pid3_2016independent                                                                                      *  
+pid3_2016not sure                                                                                            
+pid3_2016other                                                                                               
+pid3_2016republican                                                                                       ***
+obamaapp_baseline                                                                                            
+vote_generic_baselinenot sure                                                                                
+vote_generic_baselineother                                                                                   
+vote_generic_baselinethe democratic party candidate                                                          
+vote_generic_baselinethe republican party candidate                                                          
+presvote08_baseline5                                                                                         
+presvote08_baselinebarack obama                                                                              
+presvote08_baselinejohn mccain                                                                               
+presvote08_baselineother candidate                                                                           
+fav_obama_baseline                                                                                           
+post_presvote12_2012i did not vote                                                                           
+post_presvote12_2012i did not vote in this race                                                           .  
+post_presvote12_2012mitt romney                                                                           ***
+post_presvote12_2012not sure                                                                                 
+post_presvote12_2012other candidate                                                                       ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 8833.8  on 6399  degrees of freedom
+Residual deviance: 3230.3  on 6366  degrees of freedom
+AIC: 3298.3
+
+Number of Fisher Scoring iterations: 11
+
