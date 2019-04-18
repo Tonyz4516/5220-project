@@ -1,0 +1,68 @@
+                                                                                              (Intercept) 
+                                                                                             -1.707261498 
+                                                                                 accurately_counted2_2016 
+                                                                                              0.140296525 
+                                                                                            obamaapp_2016 
+                                                                                             -0.420635223 
+                                                                                           fav_obama_2016 
+                                                                                             -0.232828735 
+                                                                                         fav_sanders_2016 
+                                                                                             -0.093226257 
+                                                                                              ft_fem_2016 
+                                                                                             -0.007310827 
+                                                                                              ft_blm_2016 
+                                                                                             -0.004467606 
+view_transgender_2016should be allow to us the restrooms of the gender with which they currently identify 
+                                                                                             -0.572113067 
+           view_transgender_2016should be required to use the restrooms of the gender they were born into 
+                                                                                              0.213479513 
+                                                                     police_threat_2016isolated incidents 
+                                                                                              0.247806729 
+                                                              police_threat_2016part of a broader pattern 
+                                                                                             -0.313240577 
+                                                                                     univhealthcov_2016no 
+                                                                                             -0.333999495 
+                                                                                    univhealthcov_2016yes 
+                                                                                             -0.209299698 
+                                                                                    healthreformbill_2016 
+                                                                                             -0.382253033 
+                                                                                      policies_favor_2016 
+                                                                                              0.353812751 
+                                                                                     pid3_2016independent 
+                                                                                              0.303814925 
+                                                                                        pid3_2016not sure 
+                                                                                              0.491136528 
+                                                                                           pid3_2016other 
+                                                                                             -0.235732348 
+                                                                                      pid3_2016republican 
+                                                                                              0.895561457 
+                                                                                        obamaapp_baseline 
+                                                                                              0.104886645 
+                                                                            vote_generic_baselinenot sure 
+                                                                                             -0.153796328 
+                                                                               vote_generic_baselineother 
+                                                                                             -0.320799623 
+                                                      vote_generic_baselinethe democratic party candidate 
+                                                                                             -0.397249110 
+                                                      vote_generic_baselinethe republican party candidate 
+                                                                                             -0.197075997 
+                                                                                     presvote08_baseline5 
+                                                                                              0.420201789 
+                                                                          presvote08_baselinebarack obama 
+                                                                                              0.303562602 
+                                                                           presvote08_baselinejohn mccain 
+                                                                                              0.536003441 
+                                                                       presvote08_baselineother candidate 
+                                                                                              0.238975070 
+                                                                                       fav_obama_baseline 
+                                                                                              0.032513309 
+                                                                       post_presvote12_2012i did not vote 
+                                                                                            -10.533967868 
+                                                          post_presvote12_2012i did not vote in this race 
+                                                                                             -1.466749014 
+                                                                          post_presvote12_2012mitt romney 
+                                                                                              0.707736236 
+                                                                             post_presvote12_2012not sure 
+                                                                                             -0.020664326 
+                                                                      post_presvote12_2012other candidate 
+                                                                                             -0.701642118 

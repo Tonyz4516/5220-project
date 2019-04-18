@@ -28,13 +28,28 @@ voter_tr = voter_train[,cols]
 voter_te = voter_test[,cols]
 ```
 
+```{r}
+# fix the factor issue
+voter_tr$policies_favor_2016 = 
+    as.numeric(voter_tr$policies_favor_2016)
+voter_te$policies_favor_2016 = 
+    as.numeric(voter_te$policies_favor_2016)
+
+voter_tr$obamaapp_baseline = 
+    as.numeric(voter_tr$obamaapp_baseline)
+voter_te$obamaapp_baseline = 
+    as.numeric(voter_te$obamaapp_baseline)
+```
+
 convert to 2 classes: Trump and not Trump
 
 ```{r}
 a = as.character(voter_tr$presvote16post_2016)
 b = as.character(voter_te$presvote16post_2016)
-a = ifelse(a == "donald trump", 1, 0)
-b = ifelse(b == "donald trump", 1, 0)
+a[which(a != "donald trump")] = 0
+a[which(a == "donald trump")] = 1
+b[which(b != "donald trump")] = 0
+b[which(b == "donald trump")] = 1
 voter_tr$presvote16post_2016 = as.factor(a)
 voter_te$presvote16post_2016 = as.factor(b)
 ```
@@ -42,31 +57,28 @@ voter_te$presvote16post_2016 = as.factor(b)
 # run logistic
 
 ```{r}
-fit = glm(presvote16post_2016~., data = voter_tr, family = "binomial")
+fit = glm(presvote16post_2016~., data = voter_tr,
+           family=binomial(link="logit"), maxit = 1000)
+
+# x = as.matrix(voter_tr[,1:17])
+# y = as.matrix(voter_tr[,18])
+# 
+# fit = glmnet(x,y,family="binomial")
 ```
+
+```{r}
+sink("logit_results.txt")
+print(coef(fit))
+sink()
+```
+
+on test set
 
 step
 
 ```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
-```
-
-step
-
-```{r}
-
+y_hat = predict(fit, voter_te)
+# acc = abs(y_hat - 
 ```
 
 step
