@@ -141,6 +141,11 @@ r1 = ifelse(r1 %in% c("donald trump", "hillary clinton"),
 voter_test$presvote16post_2016 = as.factor(r1)
 ```
 
+```{r}
+# save(voter_train, voter_test, file = "rf_d.rda")
+```
+
+
 use CV and grid search to evaluate the models
 
 ```{r}
