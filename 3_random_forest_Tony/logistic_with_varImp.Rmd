@@ -1,0 +1,72 @@
+---
+title: "random forest"
+output: html_document
+---
+
+load library
+
+```{r lib, message=FALSE}
+source("http://bit.ly/sentiment_required_packages")
+load_package("glmnet")
+```
+
+load data
+
+```{r load data}
+load("../data_clean/step3.rda")
+```
+
+
+### use logistic to explain the result
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
+
+step
+
+```{r}
+
+```
