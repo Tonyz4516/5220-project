@@ -1,5 +1,5 @@
-    del df['case_identifier'] #irrelevant (?)
-    del df['PARTY_AGENDAS_rand_2016'] #irrelevant (?) – not sure what this is
+    del df['case_identifier'] #irrelevant 
+    del df['PARTY_AGENDAS_rand_2016'] #irrelevant  – not sure what this is
     del df['pp_primary16_2016'] #this is kind of the same as response variable
     del df['pp_demprim16_2016'] #kind of the same as response variable
     del df['pp_repprim16_2016'] #kind of the same as response variable
@@ -206,8 +206,7 @@
     del df['post_HouseCand2Name_2012'] #same reason as post_HouseCand1Name_2012
     del df['post_SenCand1Name_2012'] #same reason
     del df['post_SenCand2Name_2012'] #same reason
-    
-    del df['watchtv_baseline']
+    del df['watchtv_baseline'] # all variables here and below are too old (2011) and not relevant
     del df['morn_show_1_baseline']
     del df['morn_show_2_baseline']
     del df['morn_show_3_baseline']
