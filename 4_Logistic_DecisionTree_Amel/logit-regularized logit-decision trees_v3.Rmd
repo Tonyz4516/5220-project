@@ -1,0 +1,417 @@
+---
+title: "Logit - Regularized Logit - Decision Trees"
+author: "Amel Docena"
+date: "April 17, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      cache=TRUE)
+library(tidyverse)
+library(modelr)
+library(glmnet)
+library(Amelia)
+```
+
+##Introduction and Motivation
+  
+  Many Americans would consider the 2016 presidential elections as “one of the most contentious and unpredictable in recent decades.”1 Since then, strings of analyses about this tumult have flooded the media. Trump’s victory has been that controversial that until now the case about its integrity some still question. Undoubtedly, with the upcoming 2020 elections, understanding how voters’ characteristics contribute to their ballot can be highly relevant.
+  Analysts from different sectors have come up with different theories. Here is a collection of some of those narrated by the CNN and ThoughtCo.
+    
+  **1.  Celebrity success.** 
+  ThroughtCo: As we know Trump is one of the decorated US brands. He previously owned the Miss Universe pageantry, the host and producer of NBC's hit reality series The Apprentice, etc.
+  
+  **2.  High turnout among working-classs white voters.** 
+  ThoughtCo: During the presidential campaign promised to renegotiate trade deals with countries including China and levy stiff tariffs on goods imported from these countries. His message resonated with white working-class voters, especially those who live in former steel and manufacturing towns. "Skilled craftsmen and tradespeople and factory workers have seen the jobs they loved shipped thousands of miles away," Trump said at a rally near Pittsburgh, Pennsylvania.
+  Via former U.N. ambassador John Bolton: The so-called "Reagan Democrats" -- white, working class voters who tend to lean Democrat but bend right for special candidates like Ronald Reagan and, now, Trump -- are the story of this election.
+  Via FirstPost: While Hillary Clinton held campaign rallies with Beyoncé and Jay-Z, Trump was out talking about the "forgotten" working class, which in turn exacted a "revenge" on the political elite by voting for him.
+  
+  **3. Because of white male resentment. Because of white women.**
+  CNN: Forget economic anxiety -- exit polls show people making the least money voted for Clinton -- and focus on identity. The best evidence lies in Trump and his supporters' calls to "take our country back."
+  On white women: They were just as "racist" as their white male counterparts, with whom they identify more than women from minority groups.
+  
+  **4. Immigration.** 
+  CNN and ThoughtCo:Trump promised to essentially lock down the borders to prevent terrorists coming in. Trump said. Trump's position contrasted starkly with Clinton's position on illegal immigration.
+  
+  **5. Free and social media. The spread fake news.**
+  ThoughtCo: Free of "earned media" is the widespread coverage he received by major television networks. He also spent tens of millions of dollars of his own money, mostly fulfilling a vow to finance his own campaign so he could portray himself as being free from ties to special interests.  
+  
+  CNN: "Via right-wing commentator Stefan Molyneux: The medium made the man -- much as radio won the presidency for Franklin Roosevelt and television boosted John Kennedy, social media allowed Trump and his allies to drive the narrative."
+  
+  Via New York Magazine: The social network and others like it became a clearinghouse for fake news. Not simple partisan spin, but outright lies peddled as objective truth by shady actors both inside the US and abroad.
+  
+  **6. Not because of millennials**
+  Via the Boston Globe: But do blame the media for focusing too much on them and not enough on the older white males who were the great, underreported story of 2016.
+
+  **7. Hillary Clinton's Condescension Toward Voters.** 
+  ThoughtCo: Clinton never did connect to working class voters. Maybe it was her own personal wealth. Maybe it was her status as a political elite. But it most likely had to do with her controversial portrayal of Trump supporters as deplorable.  
+  
+  **8. Bernie Sanders and the Enthusiasm Gap**
+  ThoughtCo: Many—not all, but many— supporters of Vermont Sen. Bernie Sanders did not come around to Clinton after she won the brutal, and what many thought , rigged, Democratic primary.
+  
+  CNN: Because the Democratic National Committee selected the less competitive candidate
+Via WikiLeaks on Twitter: The party tipped the scales for Clinton, thus "defeating the purpose of running a primary" and in turn denying Sanders, a better candidate, the chance to win.
+
+  **9. Obamacare and Health Care Premiums.** 
+  ThoughtCo: Elections are always held in November. And November is open-enrollment time. In 2016, as in previous years, Americans were just getting notice that their health insurance premiums were rising dramatically, including those who were purchasing plans on the marketplace set up under President Barack Obama's Affordable Care Act, also known as Obamacare. Clinton supported most aspects of the health care overhaul, and voters blamed her for it. Trump, on the other hand, promised to repeal the program.  
+  
+  **10. Because of Russia after all?**
+  Via The Washington Post: The Russian deputy foreign minister, Sergei Ryabkov, said in an interview with state media that, contrary to Trump's denials, "quite a few" people from his "entourage" have "been staying in touch with Russian representatives."  
+  
+  **11. James Comey and the FBI Investigation.**
+  ThoughtCo: A scandal over Clinton's use of a personal email server as secretary of State had dogged her through early parts of the campaign. But the controversy appeared to be behind her in the waning days of the 2016 election. Most national polls in October and the first days of November showed Clinton leading Trump in the popular vote count; battleground-state polls showed her ahead, too.  
+  
+  **12. Because voters believed the system was corrupt**
+  Via The (UK) Daily Telegraph: Voters believed their political apparatus was corrupt and Trump was the only one who reliably affirmed that belief and promised to fix it.
+  Via The Washington Post: Clinton lost because exit polls showed more than half of voters believed she was "corrupt." And that was her own fault, not Comey's.
+  
+##Data Analysis
+  
+  Our motivation for this data analysis would be the theories from above.
+
+Steps:
+  
+  1.  Understand the data sets.
+  2.  Model a logistic regression.
+  3.  Model regularized logistic regression.
+  4.  Create decision trees.
+  
+###Step 1. Understand the data sets
+
+```{r}
+load("C:/Users/Lenovo/5220-project/data_clean/step3.Rda")
+load("C:/Users/Lenovo/5220-project/spread_and_impute/train_test.Rda")
+```
+
+
+On the response variable, `presvote16post_2016`.
+```{r}
+#The response variable.
+vars <- names(voter)
+voter %>% group_by(presvote16post_2016) %>% count() %>% arrange(n)
+```
+  
+  If we exclude those who have not voted for Trump, then our analysis will revolve around only those respondents who either voted for Trump or Clinton.
+
+
+On the distribution of the response variable in the training and validation sets.
+```{r}
+voted2016 <- function(data) {
+  trump <- sum(data$presvote16post_2016.donald.trump, na.rm=TRUE)
+  clinton <- sum(data$presvote16post_2016.hillary.clinton, na.rm=TRUE)
+  others <- nrow(data) - trump - clinton
+  print(paste(c("Trump: ", trump, "Clinton: ", clinton, "Others: ", others)))
+    
+}
+```
+
+
+```{r}
+#training
+#View(names(voter_train))
+print("Distribution of response on training set")
+voted2016(voter_train)
+
+#test
+print("Distribution of response on test set")
+voted2016(voter_test)
+```
+  The distribution between Trump and Clinton on both the resampled data sets seems a fair balance.
+  
+
+####On some variables that are almost pre-determined by the response
+There may be variables that pre-determines the response variable. For instance, those who voted for Trump surely have found favor in him. We can do a sanity check.
+
+```{r Sanity check}
+print("Distribution of those voted for Trump vs who favor him 2016 in entire data")
+voter %>% filter(presvote16post_2016=="donald trump") %>% group_by(fav_trump_2016) %>% count() %>% arrange(n)
+
+print("Distribution of those voted for Trump vs who favor him 2016 in train data")
+voter_train %>% filter(presvote16post_2016.donald.trump==1) %>% group_by(fav_trump_2016) %>% count() %>% arrange(n)
+
+print("Distribution of those voted for Trump vs who favor him 2016 in test data")
+voter_test %>% filter(presvote16post_2016.donald.trump==1) %>% group_by(fav_trump_2016) %>% count() %>% arrange(n)
+
+```
+
+```{r}
+favortrump <- function(data) {
+  #Percent of those who found favor in Trump and voted for him 2016 in entire data set
+  (data %>% filter(presvote16post_2016.donald.trump==1) %>%
+    mutate(favor = ifelse(fav_trump_2016==1 | fav_trump_2016==2, 1, 0)) %>%
+    summarize(sum(favor, na.rm=TRUE)/n()) %>% as.numeric())
+}
+```
+
+```{r}
+#Percent of those who found favor in Trump and voted for him 2016 in entire data set
+voter %>% filter(presvote16post_2016=="donald trump") %>% 
+  mutate(favor = ifelse(fav_trump_2016==1 | fav_trump_2016==2, 1, 0)) %>%
+  summarize(sum(favor, na.rm=TRUE)/n()) %>% as.numeric()
+
+#Percent of those who found favor in Trump and voted for him 2016 in training data
+favortrump(voter_train)
+
+#Percent of those who found favor in Trump and voted for him 2016 in test data
+favortrump(voter_test)
+```
+  
+  Among those respondents who voted for Trump, 91% found favor (somewhat favorable to very favorable) in him. This is rather expected. In other words, this predictor is pre-determined by the response and this would result in a near perfect fit. So, we should not include these types of variables as predictors then. They are almost synonymous with what we are trying to predict: Who voted for Trump is almost equivalent to predicting those who found favor in him.
+
+###Step 2. Model a logistic regression
+In this model, we shall treat ordinal variables as continuous. So we will resample the cleaned voter data set into train and test sets equivalent to what have been resampled already. (In the latter, all ordinal variables have been one-hot coded.)
+
+```{r Resample partition}
+set.seed(12345)
+resample <- voter %>% resample_partition(c("train" = 1600/8000,
+                                           "test" = 6400/8000))
+voter_train2 <- as.tibble(resample$train)
+voter_test2 <- as.tibble(resample$test)
+
+remove(resample)
+```
+
+```{r Impute Training Set}
+#For imputation, codes take from team files for coherency
+#impute with random value
+impvoter_train <-  apply(voter_train2, 2,
+                    function(x) Hmisc::impute(x, 'random')) %>% 
+  as.tibble()
+
+
+impvoter_test <- apply(voter_test2, 2,
+                    function(x) Hmisc::impute(x, 'random')) %>% 
+  as.tibble()
+```
+
+It turns out that the HMisc package returns all columns as strings. But we need to retain the original types of each columnt. There is a trick actually in dplyr. The `read_csv` function reads through the columns of a csv file and identifies for its type. We shall take advantage of this. (Clean cut.)
+```{r}
+write_csv(impvoter_train, "c:/users/lenovo/Desktop/impvoter_train.csv")
+write_csv(impvoter_test, "c:/users/lenovo/Desktop/impvoter_test.csv")
+impvoter_train <- read_csv("c:/users/lenovo/Desktop/impvoter_train.csv")
+impvoter_test <- read_csv("c:/users/lenovo/Desktop/impvoter_test.csv")
+```
+
+
+```{r}
+summary(voter_train$obamaapp_2016)
+```
+
+####Transform the data set for modelling
+
+In here we shall concoct mutiple sets of models. But before doing that, it would be good to have some evluation framework. We know that voters would certainly have these inherent characteristics: demographics, political beliefs, and attitudes toward certain issues. For the demographics, these are the relevant variables collected by the survey: age, sex, education, occupation, income level, and race. Political beliefs would include party affiliation and agenda. While, relevant issues of the American society would be about the status of the economy, free trade and government intervention, religious beliefs, redistribution of wealth, immigration, feminism, racism, etc.
+
+
+```{r}
+model1 <- function(data) {
+  modeldta <- data %>% 
+    transmute(trump = ifelse(presvote16post_2016=="donald trump", 1, 0),
+                  obama = ifelse(obamaapp_2016>0, 1, 0),
+                  age = 2016 - birthyr_baseline,
+                  feminist = ft_fem_2016,
+                  immigration = ft_immig_2016,
+                  budget = ft_blm_2016,
+                  wallstreet = ft_wallst_2016,
+                  lgbt = ft_gays_2016,
+                  unions = ft_unions_2016
+                  )
+}
+```
+
+[Documentation purposes: There were some oversights in the data transformation. Some variables that are important were missed to be processed. Example of such variables are the demographics: education, age, sex, etc. We shall process them in the next section.]
+
+```{r eval=FALSE}
+#These are variables that are actually important but were missed to be transformed
+#education
+impvoter_train %>% group_by(educ_2016) %>% count()  
+
+#employment status
+impvoter_train %>% group_by(employ_2016) %>% count()  
+
+#political ideology
+impvoter_train %>% group_by(ideo5_2016) %>% count()  
+
+#sex
+impvoter_train %>% group_by(gender_baseline) %>% count()  
+
+#race
+impvoter_train %>% group_by(race_baseline) %>% count()  
+
+#occupation
+impvoter_train %>% group_by(occupationcat_baseline) %>% count()  
+
+#employment status
+impvoter_train %>% group_by(employ_2016) %>% count()  
+
+#govt regulation
+impvoter_train %>% group_by(govt_reg_2016) %>% count()  
+
+```
+
+####Baseline Logit Model
+
+```{r Formulas}
+formula1 <- trump ~ age + obama + feminist + immigration + budget + wallstreet + lgbt + unions
+```
+
+```{r Logistic model}
+fitlogit1 <- glm(formula1, 
+             family = binomial(link = "logit"),
+             data = model1(impvoter_train))
+summary(fitlogit1)
+```
+
+####Lasso regularized logistic regression
+We shall include a wider set of predictors. But this time we shall regularize to avoid the risk of linearity and overfitting.
+
+```{r}
+formula2 <- trump ~ obama + age + unemployed + male + white + black + asian + bluecollar + profesionals + conservative + liberal + college + postgrad + futuretrend_2016 + trustgovt_2016 + US_respect_2016 + ft_muslim_2016 + ft_jew_2016 + ft_christ_2016 + ft_fem_2016 + ft_immig_2016 + ft_blm_2016 + ft_wallst_2016 + ft_unions_2016 + ft_police_2016 + imiss_d_2016 + imiss_f_2016 + imiss_h_2016 + imiss_i_2016 + prouddem_2016 + proudhis_2016 + govt_reg_2016 + amgovt_2016 + amwhite_2016 + freemarket + tradedecwage + econworse + usaworse
+
+```
+
+```{r}
+#Most of these variables have been missed during the data cleaning stage
+
+regularize <- function(data) {
+  data %>% mutate(trump = ifelse(presvote16post_2016=="donald trump", 1, 0),
+                          obama = ifelse(obamaapp_2016>0, 1, 0),
+                          age = 2016 - birthyr_baseline,
+                          unemployed = ifelse(employ_2016=="unemployed" | 
+                                                employ_2016=="temporarily laid off", 1, 0),
+                          male = ifelse(gender_baseline=="male", 1, 0),
+                          white = ifelse(race_baseline=="white", 1, 0),
+                  black = ifelse(race_baseline=="black", 1, 0),
+           asian = ifelse(race_baseline=="asian" | race_baseline=="middle eastern", 1, 0),
+           bluecollar = ifelse(occupationcat_baseline=="clerical/administrative" | 
+                      occupationcat_baseline=="sales", 1, 0),
+           profesionals = ifelse(occupationcat_baseline=="executive/upper management" | 
+                      occupationcat_baseline=="professional/technical" |
+                        occupationcat_baseline=="middle management", 1, 0),
+           conservative = ifelse(ideo5_2016=="conservative" | 
+                                   ideo5_2016=="very conservative", 1, 0),
+           liberal = ifelse(ideo5_2016=="liberal" | ideo5_2016=="very liberal", 1, 0),
+           college = ifelse(educ_2016=="2-year" | educ_2016=="4-year", 1, 0),
+           postgrad = ifelse(educ_2016=="post-grad", 1, 0),
+           freemarket = ifelse(gvmt_involment_2016=="we need a strong government to handle today's complex economic problems", 0, 1),
+           tradedecwage = ifelse(free_trade_1_2016=="decrease", 1, 0),
+           econworse = ifelse(econtrend_2016=="getting worse", 1, 0),
+           usaworse = ifelse(Americatrend_2016=="worse", 1, 0)
+           ) %>%
+    select(trump, obama, age, unemployed, male, white, black, asian, bluecollar, profesionals, conservative, liberal, college, postgrad, futuretrend_2016, trustgovt_2016, US_respect_2016, ft_muslim_2016, ft_jew_2016, ft_christ_2016, ft_fem_2016, ft_immig_2016, ft_blm_2016, ft_wallst_2016, ft_unions_2016, ft_police_2016, imiss_d_2016, imiss_f_2016, imiss_h_2016, imiss_i_2016, prouddem_2016, proudhis_2016, govt_reg_2016, amgovt_2016, amwhite_2016, freemarket, tradedecwage, econworse, usaworse)
+}
+```
+
+
+```{r eval=FALSE}
+impvoter_train %>% select(econtrend_2016, futuretrend_2016, trustgovt_2016, US_respect_2016, ft_black_2016, ft_white_2016, ft_hisp_2016,
+  ft_asian_2016, ft_muslim_2016, ft_jew_2016, ft_christ_2016, ft_fem_2016, ft_immig_2016, ft_blm_2016, ft_wallst_2016,
+  ft_gays_2016, ft_unions_2016, ft_police_2016, ft_altright_2016, imiss_a_2016, imiss_b_2016, imiss_c_2016, imiss_d_2016,
+  imiss_e_2016, imiss_f_2016, imiss_g_2016, imiss_h_2016, imiss_i_2016, prouddem_2016, proudhis_2016, taxdoug_2016,
+  govt_reg_2016, tradepolicy_2016, free_trade_1_2016, free_trade_2_2016, free_trade_3_2016, free_trade_4_2016, free_trade_5_2016,
+  amgovt_2016, amwhite_2016) %>% summary()
+```
+
+####L1 Regularized Logit (Lasso)
+
+```{r Accuracy function}
+#Accuracy function
+accuracy <- function(data) {
+  accuracy <- data %>% 
+    mutate(correct = ifelse(trump==pred, 1, 0)) %>% 
+    summarize(sum(correct)/n())
+  return(accuracy[[1]])
+}
+```
+
+```{r, eval=FALSE}
+predictors_matrix <- regularize(impvoter_train) %>% select(-trump) %>% as.matrix()
+response_matrix <- regularize(impvoter_train) %>% select(trump) %>% as.matrix()
+lambdas <- 10^seq(from=-5, to=5, length.out = 100) #shirnkage parameters for tuning
+```
+
+```{r L1 Regularized Logit, eval=FALSE}
+set.seed(1234)
+
+#By default, cv.glmnet performs a 10-fold cross validation
+cv_lasso <- cv.glmnet(x=predictors_matrix, y=response_matrix, alpha=1, 
+                      family = "binomial", lambda=lambdas, 
+                      type.measure="class", standardize=TRUE)
+lasso <- tibble(lambda = cv_lasso$lambda,
+                mse_cv = cv_lasso$cvm) %>%
+  arrange(mse_cv)
+lasso <- lasso[1, ]
+print(paste("Tuned lambda: ", lasso[[1]], " CV MSE: ", lasso[[2]]))
+coef(cv_lasso, s="lambda.min")
+plot(cv_lasso)
+
+#Predictions on Dev set
+x <- regularize(impvoter_test) %>% select(-trump) %>% as.matrix()
+pred_lasso <- predict(cv_lasso, s = "lambda.min",
+                          newx = x, type="class")
+dev_lasso <- regularize(impvoter_test) %>%
+  mutate(pred = as.numeric(pred_lasso)) %>% 
+  select(trump, pred)
+remove(x, pred_lasso)
+
+#Accuracy on Dev Set
+print(accuracy(dev_lasso))
+```
+
+
+The results of the Lasso are intuitive and resonate some of the theories formed by analysts.
+
+**More likely to vote for Trump**
+  
+  1.  The older voters are more likely to vote for Trump.
+  2.  White Americans
+  3.  Conservatives
+  4.  Christians
+  5.  Strong feelings for the Wall Street
+  6.  Terrorism and the Police (Security)
+  7.  USA has become worse
+  8.  Free trae will decrease American wages
+  
+**Less likely to vote for Trump**
+  
+  1.  Those who found approval of the Obama administration were less likely to vote for Trump.
+  2.  Blacks
+  3.  Professionals
+  4.  Liberals
+  5.  Highly-educated voters: College grads plus post-grads
+  6.  Strong feelings for Islam
+  7.  Feminism
+  8.  Immigration
+  9.  Black lives matter
+  10.  Worker unions
+  11.  Environment (We know that Trump doesnt believe in Global Warming)
+
+####Create decision trees.
+From a given set of predictors, we shall grow a tree and prune it for cost-complexity.
+We may grow different sets of trees for interpretation as needed.
+
+```{r Single decision tree, eval = FALSE}
+fitdtree <- tree::tree(formula2, data = regularize(impvoter_train) %>% 
+                         mutate(trump = as.factor(trump)))
+                                
+summary(fitdtree)
+plot(fitdtree)
+text(fitdtree, pretty = 0)
+```
+
+We shall perform cross-validation and determine the node that has the lowest misclassification error. We shall then prune the tree for cost complexity.
+```{r, eval=FALSE}
+cv_fitdtree <- tree::cv.tree(fitdtree, FUN=prune.misclass)
+cv_fitdtree
+
+par(mfrow =c(1,2))
+plot(cv_fitdtree$size, cv_fitdtree$dev, type="b")
+plot(cv_fitdtree$k, cv_fitdtree$dev, type="b")
+```
+
+```{r, eval=FALSE}
+prune_fitdtree <- tree::prune.tree(fitdtree, best = 6)
+plot(prune_fitdtree )
+text(prune_fitdtree, pretty =0)
+```
