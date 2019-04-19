@@ -1,5 +1,5 @@
-    del df['case_identifier'] #irrelevant (?)
-    del df['PARTY_AGENDAS_rand_2016'] #irrelevant (?) – not sure what this is
+    del df['case_identifier'] #irrelevant 
+    del df['PARTY_AGENDAS_rand_2016'] #irrelevant  – not sure what this is
     del df['pp_primary16_2016'] #this is kind of the same as response variable
     del df['pp_demprim16_2016'] #kind of the same as response variable
     del df['pp_repprim16_2016'] #kind of the same as response variable
