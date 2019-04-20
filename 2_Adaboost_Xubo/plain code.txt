@@ -1,0 +1,115 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import make_gaussian_quantiles
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import confusion_matrix
+import os
+from pandas.core.frame import DataFrame
+
+test = pd.read_csv('python_test.csv')
+train = pd.read_csv('python_train.csv')
+
+    del test['fav_cruz_2016']
+    del test['fav_ryan_2016']
+    del test['fav_romn_2016']
+    del test['fav_obama_2016']
+    del test['fav_sanders_2016']
+    del test['fav_rubio_2016']
+    del test['fav_romn_baseline']
+    del test['fav_ging_baseline']
+    del test['fav_hunt_baseline']
+    del test['fav_bach_baseline']
+    del test['fav_ronp_baseline']
+    del test['fav_sant_baseline']
+    del test['fav_perr_baseline']
+    del test['fav_obama_baseline']
+    del test['fav_hrc_baseline']
+    del test['fav_biden_baseline']
+    
+    del train['fav_cruz_2016']
+    del train['fav_ryan_2016']
+    del train['fav_romn_2016']
+    del train['fav_obama_2016']
+    del train['fav_sanders_2016']
+    del train['fav_rubio_2016']
+    del train['fav_romn_baseline']
+    del train['fav_ging_baseline']
+    del train['fav_hunt_baseline']
+    del train['fav_bach_baseline']
+    del train['fav_ronp_baseline']
+    del train['fav_sant_baseline']
+    del train['fav_perr_baseline']
+    del train['fav_obama_baseline']
+    del train['fav_hrc_baseline']
+    del train['fav_biden_baseline']
+    
+    del test['fav_trump_2016']
+    del test['Sanders_Trump_2016.bernie.sanders..democratic.']
+    del test['Sanders_Trump_2016.don.t.know']
+    del test['Sanders_Trump_2016.donald.trump..republican.']
+    del test['Clinton_Cruz_2016.don.t.know']
+    del test['Clinton_Cruz_2016.hillary.clinton..democratic.']
+    del test['Clinton_Cruz_2016.ted.cruz..republican.']
+    del test['Clinton_Rubio_2016.don.t.know']
+    del test['Clinton_Rubio_2016.hillary.clinton..democratic.']
+    del test['Clinton_Rubio_2016.marco.rubio..republican.']
+    del test['fav_hrc_2016']
+    del train['fav_trump_2016']
+    del train['Sanders_Trump_2016.bernie.sanders..democratic.']
+    del train['Sanders_Trump_2016.don.t.know']
+    del train['Sanders_Trump_2016.donald.trump..republican.']
+    del train['Clinton_Cruz_2016.don.t.know']
+    del train['Clinton_Cruz_2016.hillary.clinton..democratic.']
+    del train['Clinton_Cruz_2016.ted.cruz..republican.']
+    del train['Clinton_Rubio_2016.don.t.know']
+    del train['Clinton_Rubio_2016.hillary.clinton..democratic.']
+    del train['Clinton_Rubio_2016.marco.rubio..republican.']
+    del train['fav_hrc_2016']
+##thrid round variable deletion
+    del train['vote_for_against_2016.vote.against.opponent']
+    del test["vote_for_against_2016.vote.against.opponent"]
+    del train['vote_for_against_2016.vote.in.favor']
+    del test["vote_for_against_2016.vote.in.favor"]
+
+y_train=train['presvote16post_2016.donald.trump']
+X_train=train.drop('presvote16post_2016.donald.trump',axis=1)
+y_test=test['presvote16post_2016.donald.trump']
+X_test=test.drop('presvote16post_2016.donald.trump',axis=1)
+
+#parameters are optimized by grid search
+bdt = AdaBoostClassifier(None,algorithm="SAMME.R",n_estimators=50, learning_rate=0.8)
+
+adamodel=bdt.fit(X_train, y_train)
+y_predict=adamodel.predict(X_test)
+scores_train = cross_val_score(bdt, X_train, y_train,cv=10)
+print("train_accuracy:",scores_train.mean())
+scores_test = cross_val_score(bdt, X_test, y_test,cv=10)
+print("test_accuracy:",scores_test.mean())
+
+confusion_matrix(y_test,y_predict)
+tn, fp, fn, tp = confusion_matrix(y_test,y_predict).ravel()
+precision=tp/(tp+fp)
+recall=tp/(tp+fn)
+print("precision:",precision,"recall:",recall)
+print(confusion_matrix(y_test,y_predict))
+
+fe_na = X_train.columns.values
+fe_na_new = []
+fe_na_new_val = []
+
+for i in range(len(feature_importances)):
+    if feature_importances[i] > 0:
+#         print(str(i)+ '\t' + fe_na[i] + '\t' + '\t' + str(feature_importances[i]))
+        fe_na_new.append(fe_na[i])
+        fe_na_new_val.append(feature_importances[i])
+
+c={"column name" : fe_na_new,
+   "importance" : fe_na_new_val}
+data=DataFrame(c)
+print(data)
