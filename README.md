@@ -40,7 +40,7 @@
 
 ### Models
 
-[Regularized logistic regression](4_Logistic_DecisionTree_Amel/logit-regularized_logit-decision trees_v3.Rmd)
+[Regularized logistic regression](4_Logistic_DecisionTree_Amel/logit-regularized_logit-decision_trees_v3.Rmd)
 
 [Random Forest](3_random_forest_Tony/)
 
