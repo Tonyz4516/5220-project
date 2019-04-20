@@ -1,5 +1,9 @@
-source("http://bit.ly/sentiment_required_packages")	
-load_package("caret")
+#source("http://bit.ly/sentiment_required_packages")	
+require(caret)
+require(randomForest)
+require(e1071)
+require(openxlsx)
+require(Hmisc)
 
 load("data_clean/step3.rda")
 
@@ -9,16 +13,12 @@ set.seed(12345)
 orders = sample(1:8000,8000)	
 voter_train = voter[orders[1:6400],]	
 voter_test = voter[orders[6401:8000],]	
- 	#
-load_package("Hmisc")	
-	
+
 # impute with random value
 voter_train = apply(voter_train, 2,	
                     function(x) Hmisc::impute(x, 'random'))	
 voter_train = as.data.frame(voter_train, stringsAsFactors = F)	
 
-load_package(c("randomForest", "caret", "e1071"))	
- 	
 
 # ordinal and contious variables	
 col_num = which(category$category %in% c("1.0", "3.0"))	

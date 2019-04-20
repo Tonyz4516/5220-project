@@ -27,7 +27,7 @@ start = Sys.time()
 store_maxnode <- list()	
 tuneGrid <- expand.grid(.mtry = 110) # best mtry
 
-testmaxnode <- function(maxnode) {	
+testmaxnode <- function(maxnodes) {	
     set.seed(1234)	
     rf_maxnode <- train(presvote16post_2016~.,	
         data = voter_train,	
@@ -39,9 +39,11 @@ testmaxnode <- function(maxnode) {
         nodesize = 14,	
         maxnodes = maxnodes,	
         ntree = 300)	
-    current_iteration <- toString(maxnodes)	
-    store_maxnode[[current_iteration]] <- rf_maxnode	
+    # current_iteration <- toString(maxnodes)	
+    return(rf_maxnode)
 }
+
+store_maxnode <- mclapply(5:15, testmaxnode, mc.cores = 4) #
 
 results_mtry <- resamples(store_maxnode)
 
