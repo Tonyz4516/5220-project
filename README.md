@@ -44,7 +44,7 @@
 
 [Random Forest](3_random_forest_Tony/)
 
-[AdaBoost](2_Adaboost_Xubo/5220 project complete.ipynb)
+[AdaBoost](2_Adaboost_Xubo/5220_project_complete.ipynb)
 
 [Neural network](1_Neural_net_Floris/neural_network.py)
 
