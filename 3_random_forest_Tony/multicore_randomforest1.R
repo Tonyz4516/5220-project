@@ -43,7 +43,7 @@ testmaxnode <- function(maxnodes) {
     return(rf_maxnode)
 }
 
-store_maxnode <- mclapply(5:15, testmaxnode, mc.cores = 4) #
+store_maxnode <- mclapply(5:15, testmaxnode, mc.cores = 8) #
 
 results_mtry <- resamples(store_maxnode)
 
